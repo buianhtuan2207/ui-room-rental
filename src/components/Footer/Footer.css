@@ -1,0 +1,225 @@
+/* --- FOOTER CSS CHUẨN --- */
+
+/* 1. Thiết lập biến màu từ Design System của bạn */
+:root {
+    --footer-primary: #1A73E8; /* Màu xanh Primary */
+    --footer-neutral: #747780; /* Màu Neutral cho chữ phụ */
+    --footer-text-main: #111827; /* Màu đen cho tiêu đề */
+    --footer-bg: #FFFFFF;
+    --footer-border: #E5E7EB;
+    --footer-icon-bg: #F3F4F6;
+}
+
+/* 2. Container chính */
+.footer-main {
+    background-color: var(--footer-bg);
+    border-top: 1px solid var(--footer-border);
+    padding: 40px 0 40px 0; /* Tăng padding trên để thoáng hơn */
+    width: 100%;
+    font-family: 'Inter', sans-serif; /* Font Body */
+    margin-top: auto; /* Đẩy footer xuống cuối trang nếu nội dung ít */
+}
+
+.footer-container {
+    max-width: 1400px; /* Độ rộng tối đa theo Header */
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* 3. Phần trên: Brand và Các cột Links */
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 60px; /* Khoảng cách giữa brand và cụm links */
+    margin-bottom: 60px;
+}
+
+/* Khối Brand (Logo + Slogan + Social) */
+.footer-brand {
+    flex: 0 0 320px; /* Cố định độ rộng khối brand */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-logo {
+    font-family: 'Manrope', sans-serif; /* Font Headline */
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--footer-text-main);
+    margin: 0;
+}
+
+.footer-slogan {
+    color: var(--footer-neutral);
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 16px; /* Tăng khoảng cách giữa các icon */
+    margin-top: 12px;
+}
+
+.social-circle {
+    width: 42px; /* Kích thước chuẩn cho nút bấm mobile-friendly */
+    height: 42px;
+    background-color: #F3F4F6; /* Màu nền xám nhạt trung tính */
+    border-radius: 50%; /* Tạo hình tròn hoàn hảo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Hiệu ứng chuyển động mượt */
+    border: 1px solid transparent; /* Chuẩn bị trước border để hover không bị giật */
+}
+
+/* Chỉnh icon bên trong */
+.social-circle i {
+    font-size: 20px; /* Kích thước icon vừa vặn */
+    color: #1A73E8; /* Màu Primary từ Design System */
+    transition: color 0.3s ease;
+    user-select: none; /* Tránh bôi đen icon khi click nhanh */
+}
+
+/* Hiệu ứng Hover - Đảo màu chuẩn hiện đại */
+.social-circle:hover {
+    background-color: #1A73E8; /* Đổi nền sang màu xanh Primary */
+    transform: translateY(-4px); /* Nhấc nhẹ icon lên tạo chiều sâu */
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.25); /* Đổ bóng xanh nhẹ */
+}
+
+/* Đổi màu icon trắng khi hover vào vòng tròn */
+.social-circle:hover i {
+    color: #FFFFFF;
+}
+
+/* Hiệu ứng khi nhấn (Active) */
+.social-circle:active {
+    transform: translateY(-2px) scale(0.95); /* Thu nhỏ nhẹ khi nhấn */
+}
+
+/* 4. Cụm các cột Links */
+.footer-links-wrapper {
+    display: flex;
+    gap: 80px; /* Khoảng cách rộng giữa các cột link */
+    flex: 1;
+    justify-content: flex-end; /* Đẩy cụm link sang phải */
+}
+
+.link-group {
+    min-width: 160px; /* Độ rộng tối thiểu cho mỗi cột */
+}
+
+.link-group h4 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--footer-text-main);
+    margin: 0 0 24px 0; /* Khoảng cách dưới tiêu đề cột */
+}
+
+.link-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px; /* Khoảng cách giữa các dòng link */
+}
+
+.link-group ul li a {
+    text-decoration: none;
+    color: var(--footer-neutral);
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+/* Hover vào link */
+.link-group ul li a:hover {
+    color: var(--footer-primary);
+}
+
+/* 5. Phần dưới: Copyright (Sửa lỗi dính chữ) */
+.footer-bottom {
+    border-top: 1px solid #F3F4F6;
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between; /* Đẩy 2 khối ra 2 bên */
+    align-items: center;
+    gap: 20px;
+}
+
+/* Khối thông tin bên trái */
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.brand-text {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--footer-text-main);
+}
+
+.copyright {
+    font-size: 13px;
+    color: #9CA3AF;
+}
+
+/* Khối link pháp lý bên phải */
+.footer-legal-links {
+    display: flex;
+    gap: 30px; /* Khoảng cách thoáng giữa các link */
+    align-items: center;
+}
+
+.footer-legal-links a {
+    text-decoration: none;
+    font-size: 13px;
+    color: #9CA3AF;
+    transition: color 0.2s ease;
+    white-space: nowrap; /* Đảm bảo không bị xuống dòng */
+}
+
+.footer-legal-links a:hover {
+    color: var(--footer-text-main);
+}
+
+/* 6. Responsive cho màn hình nhỏ */
+@media (max-width: 1024px) {
+    .footer-top {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .footer-brand {
+        max-width: 100%;
+        text-align: center;
+        align-items: center;
+    }
+    .footer-links-wrapper {
+        justify-content: center;
+        gap: 40px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-links-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+        display: grid;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    .footer-legal-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+}
