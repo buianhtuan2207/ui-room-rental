@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import './Header.css';
 import {IconSearch} from "../../assets/Icons";
 
@@ -14,11 +14,21 @@ function Header (){
                         TroSinhVien
                     </Link>
                     <div className="header-nav-links">
-                        <Link to="/phong" className="nav-link-active">Phòng</Link>
-                        <Link to="/phongghep" className="nav-link">Phòng Ghép</Link>
-                        <Link to="/uudai" className="nav-link">Ưu Đãi</Link>
-                        <Link to="/blog" className="nav-link">Blog</Link>
-                        <Link to="/lienhe" className="nav-link">Liên Hệ</Link>
+                        <NavLink to="/room" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+                            Phòng
+                        </NavLink>
+                        <NavLink to="/phongghep" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+                            Phòng Ghép
+                        </NavLink>
+                        <NavLink to="/uudai" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+                            Ưu Đãi
+                        </NavLink>
+                        <NavLink to="/blog" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+                            Blog
+                        </NavLink>
+                        <NavLink to="/lienhe" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+                            Liên Hệ
+                        </NavLink>
                     </div>
                 </div>
 

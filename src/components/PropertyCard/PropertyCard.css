@@ -1,0 +1,152 @@
+.property-card {
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #f1f3f4;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.property-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Phần hình ảnh */
+.card-media {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.property-card:hover .card-img {
+    transform: scale(1.1);
+}
+
+/* Giá tiền */
+.card-badge-price {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: #1A73E8; /* Màu Primary */
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 12px;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+}
+
+.price-num { font-weight: 800; font-size: 16px; }
+.price-unit { font-size: 12px; opacity: 0.9; }
+
+/* Nút yêu thích */
+.btn-favorite {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.btn-favorite:hover {
+    background: #ffffff;
+    color: #ff4757;
+}
+
+.card-body {
+    padding: 24px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    margin: 0 0 12px 0;
+    font-size: 20px;
+    font-weight: 800;
+    color: #111827;
+    line-height: 1.4;
+}
+
+.card-info-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #747780;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.tag-item {
+    background: #f8f9fa;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #44474e;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Footer của Card */
+.card-footer {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid #f1f3f4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.amenities-summary {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #747780;
+}
+
+.amenity {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-detail-arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.property-card:hover .btn-detail-arrow {
+    transform: translateX(5px);
+}
