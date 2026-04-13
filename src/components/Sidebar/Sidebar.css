@@ -1,0 +1,134 @@
+.room-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.filter-card {
+    background-color: #f8f9fa;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    border: 1px solid #f1f3f4;
+}
+
+.filter-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.filter-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+}
+
+.chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.chip-btn {
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+    color: #44474e;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.chip-btn:hover {
+    border-color: #1A73E8;
+    color: #1A73E8;
+}
+
+.chip-btn.active {
+    background: #1A73E8;
+    color: #ffffff;
+    border-color: #1A73E8;
+}
+
+.amenity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.amenity-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #44474e;
+    cursor: pointer;
+    user-select: none;
+}
+
+.amenity-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #1A73E8;
+}
+
+.reset-filter-btn {
+    width: 100%;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    color: #111827;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+}
+
+.reset-filter-btn:hover {
+    background: #fee2e2;
+    color: #dc2626;
+    border-color: #fecaca;
+}
+
+.verified-card {
+    padding: 20px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(26, 115, 232, 0.08), rgba(26, 115, 232, 0.03));
+    border: 1px solid rgba(26, 115, 232, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.verified-bg-icon {
+    position: absolute;
+    right: -10px;
+    bottom: -10px;
+    opacity: 0.05;
+    transform: rotate(15deg);
+    color: #1A73E8;
+}
+
+.verified-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #1A73E8;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+}
+
+.verified-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #44474e;
+    margin: 0;
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
 import Home from '../pages/Home';
+import Room from "../pages/Room";
 
 function AppRoutes (){
     return (
@@ -10,6 +11,7 @@ function AppRoutes (){
             <Route element={<MainLayout />}>
                 {/* Các trang con nằm bên trong */}
                 <Route path="/" element={<Home />} />
+                <Route path="/room" element={<Room />} />
             </Route>
         </Routes>
     );
