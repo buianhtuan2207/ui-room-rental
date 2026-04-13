@@ -4,6 +4,7 @@ import MainLayout from '../layouts/MainLayout';
 import Home from '../pages/Home';
 import Room from "../pages/Room";
 import Detail from "../pages/Detail";
+import Favorites from "../pages/Favorites";
 
 function AppRoutes (){
     return (
@@ -14,6 +15,7 @@ function AppRoutes (){
                 <Route path="/" element={<Home />} />
                 <Route path="/room" element={<Room />} />
                 <Route path="/detail/:id" element={<Detail />} />
+                <Route path="/favorites" element={<Favorites />} />
             </Route>
         </Routes>
     );
