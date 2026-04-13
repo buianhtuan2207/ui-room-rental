@@ -1,0 +1,97 @@
+.favorites-page {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px 60px;
+    min-height: 80vh;
+}
+
+.favorites-header {
+    margin-bottom: 40px;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 24px;
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.header-title h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #111827;
+    margin: 0;
+}
+
+.header-subtitle {
+    color: #6b7280;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Grid hiển thị danh sách Card */
+.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 32px;
+}
+
+/* Trạng thái trống */
+.empty-favorites {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 0;
+}
+
+.empty-icon {
+    font-size: 64px;
+    margin-bottom: 24px;
+    opacity: 0.2;
+}
+
+.empty-favorites h2 {
+    font-size: 24px;
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+.empty-favorites p {
+    color: #6b7280;
+    margin-bottom: 32px;
+}
+
+.btn-go-home {
+    padding: 14px 32px;
+    background: #1A73E8;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-go-home:hover {
+    background: #1557b0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .favorites-page {
+        padding: 100px 16px 40px;
+    }
+
+    .header-title h1 {
+        font-size: 24px;
+    }
+}
