@@ -2,7 +2,7 @@
     background: #ffffff;
     border-radius: 20px;
     overflow: hidden;
-    border: 1px solid #f1f3f4;
+    border: 1px solid #ddd;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     display: flex;
