@@ -1,0 +1,329 @@
+
+:root {
+    --primary-color: #1A73E8;
+    --primary-hover: #1557b0;
+    --bg-light: #f8f9fa;
+    --text-main: #111827;
+    --text-sub: #6b7280;
+    --border: #e5e7eb;
+    --white: #ffffff;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Layout Container --- */
+.account-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    gap: 40px;
+    padding: 24px 60px;
+    min-height: 100vh;
+}
+
+/* --- Sidebar Navigation --- */
+.account-sidebar {
+    width: 280px;
+    background: var(--bg-light);
+    border-radius: 20px;
+    padding: 24px;
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.sidebar-header {
+    margin-bottom: 32px;
+    padding-left: 8px;
+}
+
+.account-type {
+    display: block;
+    color: var(--primary-color);
+    font-weight: 800;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+}
+
+.account-desc {
+    font-size: 12px;
+    color: var(--text-sub);
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: var(--text-sub);
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+    background: #edf2f7;
+    color: var(--text-main);
+}
+
+.nav-item.active {
+    background: #e8f0fe;
+    color: var(--primary-color);
+}
+
+.sidebar-footer {
+    margin-top: 40px;
+}
+
+.btn-secondary-full {
+    width: 100%;
+    padding: 12px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-secondary-full:hover {
+    background: var(--bg-light);
+    border-color: var(--text-sub);
+}
+
+/* --- Content Area --- */
+.account-content {
+    flex: 1;
+}
+
+.content-header h1 {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--text-main);
+    letter-spacing: -0.02em;
+}
+
+.content-header p {
+    color: var(--text-sub);
+    margin-top: 8px;
+}
+
+/* --- Main Form Card --- */
+.account-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 32px;
+    margin-top: 32px;
+    box-shadow: var(--shadow-sm);
+}
+
+.avatar-section {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+}
+
+.avatar-wrapper {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.avatar-wrapper img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    ring: 4px solid #e8f0fe;
+}
+
+.btn-edit-avatar {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.avatar-text h3 {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.avatar-text p {
+    font-size: 13px;
+    color: var(--text-sub);
+}
+
+/* --- Form Fields --- */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group.full-width {
+    grid-column: span 2;
+}
+
+.input-group label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-main);
+    padding-left: 4px;
+}
+
+.input-group input {
+    padding: 14px 16px;
+    background: #f1f3f4;
+    border: 2px solid transparent;
+    border-radius: 14px;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    background: var(--white);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.1);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+}
+
+.btn-primary-lg {
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 14px 40px;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primary-lg:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+}
+
+.btn-ghost {
+    background: none;
+    border: none;
+    color: var(--text-sub);
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0 16px;
+}
+
+/* --- Saved Section (Grid with PropertyCard) --- */
+.saved-section {
+    margin-top: 60px;
+}
+
+.section-flex-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.section-flex-header h2 {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.saved-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+    .account-container {
+        flex-direction: column;
+        padding: 100px 20px 40px;
+    }
+
+    .account-sidebar {
+        width: 100%;
+        position: static;
+        margin-bottom: 32px;
+    }
+
+    .saved-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .input-group.full-width {
+        grid-column: span 1;
+    }
+
+    .saved-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .btn-primary-lg {
+        width: 100%;
+    }
+}

@@ -13,8 +13,7 @@
 /* 2. Container chính */
 .footer-main {
     background-color: var(--footer-bg);
-    border-top: 1px solid var(--footer-border);
-    padding: 40px 0 40px 0; /* Tăng padding trên để thoáng hơn */
+    padding:0 40px 0; /* Tăng padding trên để thoáng hơn */
     width: 100%;
     font-family: 'Inter', sans-serif; /* Font Body */
     margin-top: auto; /* Đẩy footer xuống cuối trang nếu nội dung ít */
