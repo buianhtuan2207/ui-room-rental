@@ -13,7 +13,6 @@
 /* 2. Container chính */
 .footer-main {
     background-color: var(--footer-bg);
-    padding:0 40px 0; /* Tăng padding trên để thoáng hơn */
     width: 100%;
     font-family: 'Inter', sans-serif; /* Font Body */
     margin-top: auto; /* Đẩy footer xuống cuối trang nếu nội dung ít */
@@ -21,16 +20,15 @@
 
 .footer-container {
     max-width: 1400px; /* Độ rộng tối đa theo Header */
-    margin: 0 auto;
     padding: 0 24px;
+    margin: 0 auto;
 }
 
 /* 3. Phần trên: Brand và Các cột Links */
 .footer-top {
     display: flex;
     justify-content: space-between;
-    gap: 60px; /* Khoảng cách giữa brand và cụm links */
-    margin-bottom: 60px;
+    gap: 300px; /* Khoảng cách giữa brand và cụm links */
 }
 
 /* Khối Brand (Logo + Slogan + Social) */
@@ -139,53 +137,6 @@
 /* Hover vào link */
 .link-group ul li a:hover {
     color: var(--footer-primary);
-}
-
-/* 5. Phần dưới: Copyright (Sửa lỗi dính chữ) */
-.footer-bottom {
-    border-top: 1px solid #F3F4F6;
-    padding-top: 30px;
-    display: flex;
-    justify-content: space-between; /* Đẩy 2 khối ra 2 bên */
-    align-items: center;
-    gap: 20px;
-}
-
-/* Khối thông tin bên trái */
-.footer-info {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.brand-text {
-    font-weight: 700;
-    font-size: 13px;
-    color: var(--footer-text-main);
-}
-
-.copyright {
-    font-size: 13px;
-    color: #9CA3AF;
-}
-
-/* Khối link pháp lý bên phải */
-.footer-legal-links {
-    display: flex;
-    gap: 30px; /* Khoảng cách thoáng giữa các link */
-    align-items: center;
-}
-
-.footer-legal-links a {
-    text-decoration: none;
-    font-size: 13px;
-    color: #9CA3AF;
-    transition: color 0.2s ease;
-    white-space: nowrap; /* Đảm bảo không bị xuống dòng */
-}
-
-.footer-legal-links a:hover {
-    color: var(--footer-text-main);
 }
 
 /* 6. Responsive cho màn hình nhỏ */

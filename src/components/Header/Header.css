@@ -11,10 +11,7 @@
     right: 0;
     width: 100%;
     z-index: 1000;
-    background-color: #eee;
-}
-main{
-    padding-top: 80px;
+    background-color: #F3F4F6;
 }
 /* --- Khối bên trái: Logo & Menu --- */
 .brand-and-nav {
