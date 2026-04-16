@@ -4,22 +4,29 @@ import MainLayout from '../layouts/MainLayout';
 import Home from '../pages/Home';
 import Room from "../pages/Room";
 import Detail from "../pages/Detail";
-import  Login from "../pages/Login"
+import Login from "../pages/Login";
 import Verify from '../pages/Verify';
 import ForgotPassword from '../pages/ForgotPassword';
 import Register from '../pages/Register';
 import Account from "../pages/Profile";
 
+// Import trang Dashboard mới
+import AdminDashboard from '../pages/AdminDashboard';
+
 function AppRoutes() {
     return (
         <Routes>
-            {/* 1. Route cho trang Login: KHÔNG dùng MainLayout */}
+            {/* 1. Nhóm Route cho Authentication & Guest: Không dùng Layout chung */}
             <Route path="/login" element={<Login />} />
             <Route path="/verify" element={<Verify />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/register" element={<Register />} />
 
-            {/* 2. Nhóm Route dùng MainLayout (Cần Header/Footer/Sidebar) */}
+            {/* 2. Route cho Admin Dashboard: 
+                Trang này tự có Sidebar/Header riêng theo thiết kế của bạn nên không dùng MainLayout */}
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+
+            {/* 3. Nhóm Route dùng MainLayout cho khách hàng (Header/Footer/Sidebar người dùng) */}
             <Route element={<MainLayout />}>
                 <Route path="/" element={<Home />} />
                 <Route path="/room" element={<Room />} />
@@ -27,7 +34,7 @@ function AppRoutes() {
                 <Route path="/profile" element={<Account />} />
             </Route>
 
-            {/* 3. Xử lý khi người dùng nhập sai URL (Redirect về Home hoặc trang 404) */}
+            {/* 4. Điều hướng mặc định */}
             <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
     );

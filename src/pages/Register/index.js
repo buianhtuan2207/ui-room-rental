@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Register.css';
@@ -15,13 +14,13 @@ export default function Register() {
     return (
         <div className="register-page">
             <main className="register-main">
-                {/* Left Side: Value Proposition & Branding */}
+                {/* Cột trái: Giá trị cốt lõi & Thương hiệu */}
                 <section className="register-sidebar">
                     <div className="sidebar-bg-wrapper">
                         <img 
                             className="sidebar-bg-image" 
                             src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop" 
-                            alt="Luxury Student Living Room"
+                            alt="Phòng sinh viên hiện đại"
                         />
                         <div className="sidebar-gradient-overlay"></div>
                     </div>
@@ -35,19 +34,19 @@ export default function Register() {
                         </div>
                         
                         <div className="sidebar-hero">
-                            <h1 className="hero-title">Elevate Your Living Experience.</h1>
-                            <p className="hero-desc">Join an exclusive community of students and premium landlords dedicated to refined living and academic excellence.</p>
+                            <h1 className="hero-title">Nâng tầm không gian sống của bạn.</h1>
+                            <p className="hero-desc">Tham gia cộng đồng độc quyền dành cho sinh viên và các chủ nhà cao cấp, hướng tới một không gian sống tinh tế và thành công trong học tập.</p>
                             
                             <div className="feature-cards">
                                 <div className="glass-card">
                                     <span className="material-symbols-outlined card-icon">verified_user</span>
-                                    <h3 className="card-title">Verified Listings</h3>
-                                    <p className="card-desc">Every property is hand-inspected for quality.</p>
+                                    <h3 className="card-title">Phòng đã xác thực</h3>
+                                    <p className="card-desc">Mọi bất động sản đều được kiểm định chất lượng thủ công.</p>
                                 </div>
                                 <div className="glass-card">
                                     <span className="material-symbols-outlined card-icon">electric_bolt</span>
-                                    <h3 className="card-title">Smart Matching</h3>
-                                    <p className="card-desc">Find the lifestyle that fits your goals.</p>
+                                    <h3 className="card-title">Kết nối thông minh</h3>
+                                    <p className="card-desc">Tìm kiếm phong cách sống phù hợp với mục tiêu của bạn.</p>
                                 </div>
                             </div>
                         </div>
@@ -57,119 +56,119 @@ export default function Register() {
                                 <div className="avatar dummy-avatar-1"></div>
                                 <div className="avatar dummy-avatar-2"></div>
                             </div>
-                            <span>Joined by 5,000+ students this semester</span>
+                            <span>Hơn 5,000+ sinh viên đã tham gia trong học kỳ này</span>
                         </div>
                     </div>
                 </section>
 
-                {/* Right Side: Registration Form */}
+                {/* Cột phải: Form đăng ký */}
                 <section className="register-form-section">
                     <div className="form-wrapper">
                         <div className="form-header">
-                            <h2 className="form-title">Create your account</h2>
-                            <p className="form-subtitle">Start your journey toward a curated sanctuary today.</p>
+                            <h2 className="form-title">Tạo tài khoản mới</h2>
+                            <p className="form-subtitle">Bắt đầu hành trình tìm kiếm không gian sống mơ ước ngay hôm nay.</p>
                         </div>
 
                         <form className="register-form" onSubmit={handleSubmit}>
-                            {/* User Role Toggle */}
+                            {/* Lựa chọn vai trò người dùng */}
                             <div className="role-toggle">
                                 <button 
                                     type="button" 
                                     className={`toggle-btn ${role === 'student' ? 'active' : ''}`}
                                     onClick={() => setRole('student')}
                                 >
-                                    Student
+                                    Sinh viên
                                 </button>
                                 <button 
                                     type="button" 
                                     className={`toggle-btn ${role === 'landlord' ? 'active' : ''}`}
                                     onClick={() => setRole('landlord')}
                                 >
-                                    Landlord
+                                    Chủ nhà
                                 </button>
                             </div>
 
                             <div className="form-grid">
-                                {/* Full Name */}
+                                {/* Họ và Tên */}
                                 <div className="input-group">
-                                    <label className="input-label">Full Name</label>
-                                    <input className="text-input" type="text" placeholder="Alex Morgan" required />
+                                    <label className="input-label">Họ và Tên</label>
+                                    <input className="text-input" type="text" placeholder="Nguyễn Văn An" required />
                                 </div>
 
                                 {/* Email */}
                                 <div className="input-group">
-                                    <label className="input-label">Email Address</label>
-                                    <input className="text-input" type="email" placeholder="alex@university.edu" required />
+                                    <label className="input-label">Địa chỉ Email</label>
+                                    <input className="text-input" type="email" placeholder="an.nguyen@daihoc.edu.vn" required />
                                 </div>
 
                                 <div className="input-row">
-                                    {/* Phone */}
+                                    {/* Số điện thoại */}
                                     <div className="input-group">
-                                        <label className="input-label">Phone</label>
-                                        <input className="text-input" type="tel" placeholder="+1 (555) 000-0000" />
+                                        <label className="input-label">Số điện thoại</label>
+                                        <input className="text-input" type="tel" placeholder="0901 234 567" />
                                     </div>
                                     
-                                    {/* University */}
+                                    {/* Trường học */}
                                     <div className="input-group">
-                                        <label className="input-label">University</label>
+                                        <label className="input-label">Trường đại học</label>
                                         <div className="select-wrapper">
                                             <select className="text-input select-input" required defaultValue="">
-                                                <option value="" disabled>Select University</option>
-                                                <option value="oxford">Oxford University</option>
-                                                <option value="stanford">Stanford University</option>
-                                                <option value="mit">MIT</option>
-                                                <option value="lse">LSE</option>
+                                                <option value="" disabled>Chọn trường đại học</option>
+                                                <option value="hust">ĐH Bách Khoa</option>
+                                                <option value="neu">ĐH Kinh tế Quốc dân</option>
+                                                <option value="ftu">ĐH Ngoại thương</option>
+                                                <option value="vnu">ĐH Quốc gia</option>
                                             </select>
                                             <span className="material-symbols-outlined select-icon">expand_more</span>
                                         </div>
                                     </div>
                                 </div>
 
-                                {/* Password */}
+                                {/* Mật khẩu */}
                                 <div className="input-group">
-                                    <label className="input-label">Password</label>
+                                    <label className="input-label">Mật khẩu</label>
                                     <input className="text-input" type="password" placeholder="••••••••" required />
                                 </div>
 
-                                {/* Confirm Password */}
+                                {/* Xác nhận mật khẩu */}
                                 <div className="input-group">
-                                    <label className="input-label">Confirm Password</label>
+                                    <label className="input-label">Xác nhận mật khẩu</label>
                                     <input className="text-input" type="password" placeholder="••••••••" required />
                                 </div>
                             </div>
 
-                            {/* Checkbox */}
+                            {/* Điều khoản */}
                             <div className="checkbox-group">
                                 <input type="checkbox" id="terms" className="checkbox-input" required />
                                 <label htmlFor="terms" className="checkbox-label">
-                                    I agree to the <a href="#!" className="link">Terms of Service</a> and <a href="#!" className="link">Privacy Policy</a>.
+                                    Tôi đồng ý với các <a href="#!" className="link">Điều khoản dịch vụ</a> và <a href="#!" className="link">Chính sách bảo mật</a>.
                                 </label>
                             </div>
 
-                            {/* Submit Button */}
+                            {/* Nút đăng ký */}
                             <button type="submit" className="btn-submit">
-                                Create Account
+                                Tạo tài khoản ngay
                             </button>
 
                             <p className="login-prompt">
-                                Already have an account? <Link to="/login" className="link font-bold">Sign In</Link>
+                                Bạn đã có tài khoản? <Link to="/login" className="link font-bold">Đăng nhập ngay</Link>
                             </p>
                         </form>
                     </div>
                 </section>
             </main>
 
-            {/* Footer */}
+            {/* Chân trang */}
             <footer className="footer-container">
                 <div className="footer-brand-info">
                     <span className="footer-title">The Curated Sanctuary</span>
-                    <p className="footer-copyright">© 2024 The Curated Sanctuary. Editorial Student Living.</p>
+                    <p className="footer-copyright">© 2024 The Curated Sanctuary. Không gian sống sinh viên tiêu chuẩn.</p>
                 </div>
                 <div className="footer-links">
-                    <a href="#!">Privacy Policy</a>
-                    <a href="#!">Terms of Service</a>
-                    <a href="#!">Help Center</a>
-                    <a href="#!">Contact Support</a>
+                    <a href="#!">Chính sách bảo mật</a>
+                    <a href="#!">Điều khoản dịch vụ</a>
+                    <a href="#!">Trung tâm hỗ trợ</a>
+                    <a href="#!">Liên hệ</a>
                 </div>
             </footer>
         </div>
