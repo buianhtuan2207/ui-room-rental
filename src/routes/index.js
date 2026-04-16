@@ -8,7 +8,9 @@ import Login from "../pages/Login";
 import Verify from '../pages/Verify';
 import ForgotPassword from '../pages/ForgotPassword';
 import Register from '../pages/Register';
-import Account from "../pages/Profile";
+import Profile from "../pages/Profile";
+import PostRoom from "../pages/PostRoom";
+import Favorites from "../pages/Favorites";
 
 // Import trang Dashboard mới
 import AdminDashboard from '../pages/AdminDashboard';
@@ -31,7 +33,9 @@ function AppRoutes() {
                 <Route path="/" element={<Home />} />
                 <Route path="/room" element={<Room />} />
                 <Route path="/detail/:id" element={<Detail />} />
-                <Route path="/profile" element={<Account />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/favorites" element={<Favorites />} />
+                <Route path="/post" element={<PostRoom />} />
             </Route>
 
             {/* 4. Điều hướng mặc định */}

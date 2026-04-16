@@ -56,19 +56,6 @@ function Footer() {
                     </div>
                 </div>
 
-                {/* Phần dưới: Copyright */}
-                <div className="footer-bottom">
-                    <div className="footer-info">
-                        <span className="brand-text">The Editorial Marketplace</span>
-                        <span className="copyright">© 2026 TroSinhVien. Bản quyền thuộc về đội ngũ phát triển.</span>
-                    </div>
-                    <div className="footer-legal-links">
-                        <a href="#about">Về chúng tôi</a>
-                        <a href="#privacy">Quyền riêng tư</a>
-                        <a href="#terms">Điều khoản</a>
-                        <a href="#contact">Liên hệ</a>
-                    </div>
-                </div>
             </div>
         </footer>
     );
