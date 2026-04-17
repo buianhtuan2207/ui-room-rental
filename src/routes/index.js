@@ -11,6 +11,7 @@ import Register from '../pages/Register';
 import Profile from "../pages/Profile";
 import PostRoom from "../pages/PostRoom";
 import Favorites from "../pages/Favorites";
+import Chat from "../pages/Chat";
 
 function AppRoutes() {
     return (
@@ -20,6 +21,7 @@ function AppRoutes() {
             <Route path="/verify" element={<Verify />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/chat" element={<Chat />} />
 
             {/* 2. Nhóm Route dùng MainLayout (Cần Header/Footer/Sidebar) */}
             <Route element={<MainLayout />}>
