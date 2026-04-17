@@ -12,6 +12,7 @@ import Profile from "../pages/Profile";
 import PostRoom from "../pages/PostRoom";
 import Favorites from "../pages/Favorites";
 import Chat from "../pages/Chat";
+import LandlordDashboard from "../pages/LandlordDashboard";
 
 function AppRoutes() {
     return (
@@ -31,6 +32,7 @@ function AppRoutes() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/favorites" element={<Favorites />} />
                 <Route path="/post" element={<PostRoom />} />
+                <Route path="/landlord" element={<LandlordDashboard />} />
             </Route>
 
             {/* 3. Xử lý khi người dùng nhập sai URL (Redirect về Home hoặc trang 404) */}
