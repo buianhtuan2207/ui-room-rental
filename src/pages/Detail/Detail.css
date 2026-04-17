@@ -11,7 +11,7 @@
 .detail-container {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 24px 60px;
+    padding: 98px 60px;
 }
 
 .detail-grid {
@@ -226,6 +226,59 @@
 
 /* --- Sidebar Sticky --- */
 .sticky-box { position: sticky; top: 100px; }
+.post-header-sidebar{
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+}
+.post-category {
+    display: inline-block;
+    background: #eef2ff;
+    color: #4f46e5;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.post-title {
+    font-size: 20px;
+    line-height: 1.4;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+.post-meta-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f3f4f6;
+    padding-bottom: 15px;
+    margin-bottom: 5px;
+}
+
+.post-id, .post-time {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+/* Điều chỉnh lại sticky-box nếu cần để tiêu đề luôn hiển thị tốt */
+.sticky-box {
+    position: sticky;
+    top: 100px; /* Cách Navbar một khoảng */
+}
+
+/* Hiệu ứng khi lướt qua tiêu đề */
+.post-title:hover {
+    color: #1A73E8;
+    transition: color 0.3s ease;
+}
 
 .price-card {
     background: white;
@@ -301,6 +354,135 @@
     font-weight: 700;
     font-size: 13px;
     cursor: pointer;
+}
+/* --- Styles cho Booking Modal --- */
+.booking-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease;
+}
+
+.booking-modal {
+    background: white;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 20px;
+    padding: 32px;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-modal:hover { color: #333; }
+
+.modal-header h3 {
+    font-size: 22px;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.modal-header p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #444;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.form-input {
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus {
+    border-color: #1A73E8;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+}
+
+.text-area {
+    min-height: 100px;
+    resize: none;
+}
+
+.btn-submit {
+    background: #1A73E8;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.btn-submit:hover {
+    background: #1557b0;
+}
+
+.btn-submit:active {
+    transform: scale(0.98);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 /* Responsive */
