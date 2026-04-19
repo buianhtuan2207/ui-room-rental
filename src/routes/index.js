@@ -12,6 +12,7 @@ import AccountManagement from "../pages/AccountManagement";
 import PostRoom from "../pages/PostRoom";
 import Favorites from "../pages/Favorites";
 import Chat from "../pages/Chat";
+import Profile from "../pages/Profile";
 import LandlordDashboard from "../pages/LandlordDashboard";
 import Blacklist from "../pages/Blacklist";
 import FinancialManagement from "../pages/Finance";
