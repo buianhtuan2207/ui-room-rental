@@ -8,32 +8,52 @@ import Login from "../pages/Login";
 import Verify from '../pages/Verify';
 import ForgotPassword from '../pages/ForgotPassword';
 import Register from '../pages/Register';
-import Profile from "../pages/Profile";
+import AccountManagement from "../pages/AccountManagement"; 
 import PostRoom from "../pages/PostRoom";
 import Favorites from "../pages/Favorites";
+import Blacklist from "../pages/Blacklist";
+import FinancialManagement from "../pages/Finance";
+import PostManagement from "../pages/PostManagement";
 
-// Import trang Dashboard mới
+
+// Import trang Admin Dashboard cũ
 import AdminDashboard from '../pages/AdminDashboard';
+
+// ĐÃ SỬA: Import trang Thống kê từ thư mục mới bạn vừa tạo
+import SystemStatistics from '../pages/SystemStatistics'; 
 
 function AppRoutes() {
     return (
         <Routes>
-            {/* 1. Nhóm Route cho Authentication & Guest: Không dùng Layout chung */}
+            {/* 1. Nhóm Route cho Authentication & Guest */}
             <Route path="/login" element={<Login />} />
             <Route path="/verify" element={<Verify />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/register" element={<Register />} />
 
-            {/* 2. Route cho Admin Dashboard: 
-                Trang này tự có Sidebar/Header riêng theo thiết kế của bạn nên không dùng MainLayout */}
+            {/* 2. Nhóm Dashboard/Cá nhân: Tự có Sidebar riêng */}
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            
+            {/* Route thống kê  SystemStatistics */}
+            <Route path="/admin/statistics" element={<SystemStatistics />} />
 
-            {/* 3. Nhóm Route dùng MainLayout cho khách hàng (Header/Footer/Sidebar người dùng) */}
+            {/* Route quản lý tài khoản */}
+            <Route path="/admin/account-management" element={<AccountManagement />} />
+
+            {/* Route quản lý danh sách đen */}
+            <Route path="/admin/blacklist" element={<Blacklist />} />
+
+            {/* Route quản lý tài chính */}
+            <Route path="/admin/finance" element={<FinancialManagement />} />
+
+            {/* Route quản lý bài đăng */}
+            <Route path="/admin/post-management" element={<PostManagement />} />
+
+            {/* 3. Nhóm Route dùng MainLayout cho khách hàng */}
             <Route element={<MainLayout />}>
                 <Route path="/" element={<Home />} />
                 <Route path="/room" element={<Room />} />
                 <Route path="/detail/:id" element={<Detail />} />
-                <Route path="/profile" element={<Profile />} />
                 <Route path="/favorites" element={<Favorites />} />
                 <Route path="/post" element={<PostRoom />} />
             </Route>

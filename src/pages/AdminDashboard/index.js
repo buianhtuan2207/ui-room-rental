@@ -1,241 +1,245 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './AdminDashboard.css';
 
 const AdminDashboard = () => {
   return (
-    <div className="dashboard-container">
-      {/* Sidebar Left */}
-      <aside className="sidebar">
-        <div className="sidebar-logo">
-          <h1 style={{ margin: '0' }}>Nexus Living</h1>
-          <p style={{ color: '#a3aed0', fontSize: '12px', margin: '0' }}>
-            Bộ công cụ quản lý
-          </p>
+    <div className="admin-layout">
+      {/* SIDEBAR */}
+      <aside className="admin-sidebar">
+        <div className="sidebar-header">
+          <h2>Editorial Marketplace</h2>
+          <p>Quản trị hệ thống</p>
         </div>
 
-        <nav className="nav-menu" style={{ marginTop: '30px' }}>
-          <ul className="nav-links">
-            <li>
-              <a href="#" className="nav-item active">
-                <span className="material-symbols-outlined">dashboard</span>
-                Bảng điều khiển
-              </a>
-            </li>
-            <li>
-              <a href="#" className="nav-item">
-                <span className="material-symbols-outlined">group</span>
-                Quản lý tài khoản
-              </a>
-            </li>
-            <li>
-              <a href="#" className="nav-item">
-                <span className="material-symbols-outlined">apartment</span>
-                Quản lý bất động sản
-              </a>
-            </li>
-            {/* Yêu cầu 4: Đưa cài đặt và hỗ trợ vào menu phụ nếu cần, nhưng theo hình 3 thì nó nằm dưới cùng */}
-          </ul>
+        <nav className="sidebar-nav">
+          <Link to="/admin/dashboard" className="nav-item active">
+            <span className="material-symbols-outlined">dashboard</span>
+            <span>Bảng điều khiển</span>
+          </Link>
+          <Link to="#" className="nav-item">
+            <span className="material-symbols-outlined">confirmation_number</span>
+            <span>Quản lý Voucher</span>
+          </Link>
+          <Link to="/admin/blacklist" className="nav-item">
+            <span className="material-symbols-outlined">block</span>
+            <span>Quản lý Danh sách đen</span>
+          </Link>
+          <Link to="/admin/account-management" className="nav-item">
+            <span className="material-symbols-outlined">group</span>
+            <span>Quản lý Người dùng</span>
+          </Link>
+          <Link to="#" className="nav-item">
+            <span className="material-symbols-outlined">apartment</span>
+            <span>Quản lý Bài đăng</span>
+          </Link>
+          <Link to="/admin/finance" className="nav-item">
+            <span className="material-symbols-outlined">payments</span>
+            <span>Quản lý Tài chính</span>
+          </Link>
+          <Link to="#" className="nav-item">
+            <span className="material-symbols-outlined">report</span>
+            <span>Quản lý Báo cáo</span>
+          </Link>
+          <Link to="#" className="nav-item">
+            <span className="material-symbols-outlined">gavel</span>
+            <span>Xử lý tranh chấp</span>
+          </Link>
+          <Link to="/admin/statistics" className="nav-item">
+            <span className="material-symbols-outlined">analytics</span>
+            <span>Thống kê hệ thống</span>
+          </Link>
         </nav>
 
-        {/* Yêu cầu 4: Phần Bottom Sidebar như Hình 3 */}
-        <div style={{ marginTop: 'auto' }}>
-          <hr style={{ border: '0', borderTop: '1px solid #f4f7fe', margin: '20px 0' }} />
-          
-          <button className="btn-primary" style={{ width: '100%', justifyContent: 'center', marginBottom: '15px' }}>
-            Thêm danh mục mới
-          </button>
-          
-          <ul className="nav-links">
-            <li>
-              <a href="#" className="nav-item" style={{ padding: '8px 15px', marginBottom: '5px' }}>
-                <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>settings</span>
-                Cài đặt
-              </a>
-            </li>
-            <li>
-              <a href="#" className="nav-item" style={{ padding: '8px 15px', marginBottom: '15px' }}>
-                <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>help</span>
-                Hỗ trợ
-              </a>
-            </li>
-          </ul>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '0 10px' }}>
-            <img src="https://i.pravatar.cc/40?img=11" alt="avatar" style={{ borderRadius: '50%', width: '40px', height: '40px' }} />
-            <div>
-              <p style={{ margin: 0, fontSize: '13px', fontWeight: 'bold' }}>Bộ công cụ quản lý</p>
-              <p style={{ margin: 0, fontSize: '10px', color: '#a3aed0' }}>Quản trị viên cấp cao</p>
-            </div>
+        <div className="sidebar-footer">
+          <img src="https://i.pravatar.cc/150?img=11" alt="Admin" />
+          <div className="admin-info">
+            <p className="name">Admin</p>
+            <p className="logout">Thoát hệ thống</p>
           </div>
         </div>
       </aside>
 
-      {/* Main Content Area */}
-      <main className="main-wrapper">
-        <header className="header-top">
-          <div className="search-bar">
-            <span className="material-symbols-outlined" style={{ color: '#a3aed0' }}>search</span>
-            <input type="text" placeholder="Tìm kiếm hồ sơ, người dùng..." />
+      {/* MAIN WRAPPER */}
+      <div className="admin-main">
+        {/* HEADER */}
+        <header className="admin-header">
+          <div className="search-box">
+            <span className="material-symbols-outlined">search</span>
+            <input type="text" placeholder="Tìm kiếm hệ thống..." />
           </div>
-          <div style={{ display: 'flex', gap: '20px', color: '#a3aed0' }}>
-            <span className="material-symbols-outlined" style={{ cursor: 'pointer' }}>notifications</span>
-            <span className="material-symbols-outlined" style={{ cursor: 'pointer' }}>mail</span>
-            <span className="material-symbols-outlined" style={{ cursor: 'pointer' }}>settings</span>
+
+          <div className="header-actions">
+            <div className="icon-group">
+              <button><span className="material-symbols-outlined">notifications</span></button>
+              <button><span className="material-symbols-outlined">mail</span></button>
+              <button><span className="material-symbols-outlined">settings</span></button>
+            </div>
+            <div className="divider"></div>
+            <div className="profile-group">
+              <span>Admin Console</span>
+              <img src="https://i.pravatar.cc/150?img=11" alt="Admin" />
+            </div>
           </div>
         </header>
 
-        <section style={{ marginBottom: '30px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-            <div>
-              {/* Yêu cầu 1: Chữ Tổng quan in đậm */}
-              <h2 style={{ fontSize: '32px', fontWeight: '800', margin: '0 0 5px 0' }}>Tổng quan</h2>
-              <p style={{ color: '#a3aed0', margin: '0', fontSize: '14px' }}>Chào mừng quay trở lại, đây là những gì đang diễn ra hôm nay.</p>
-            </div>
-            {/* Yêu cầu 3: Nút có icon như Hình 2 */}
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <button className="btn-outline">
-                <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>download</span>
-                Xuất báo cáo
-              </button>
-              <button className="btn-primary">
-                <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>campaign</span>
-                Phát thông báo
-              </button>
-            </div>
-          </div>
-        </section>
-
-        {/* Stats Grid */}
-        <div className="stats-grid">
-          <StatCard label="TỔNG SỐ SINH VIÊN" value="12,482" trend="+14% tháng này" trendColor="#05cd99" icon="school" />
-          <StatCard label="TỔNG SỐ CHỦ NHÀ" value="843" trend="+3 mới hôm nay" trendColor="#05cd99" icon="real_estate_agent" />
-          <StatCard label="CHỜ PHÊ DUYỆT" value="28" trend="! Cần xử lý" trendColor="#ee5d50" icon="pending_actions" />
-          <StatCard label="DOANH THU THÁNG" value="$142k" trend="92% mục tiêu" trendColor="#2b59ff" icon="insights" />
-        </div>
-
-        {/* Bento Grid */}
-        <div className="bento-grid">
-          {/* Cột trái: Bảng */}
-          <div className="content-card">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h3 style={{ margin: '0', fontSize: '18px', fontWeight: '800' }}>Yêu cầu xác minh gần đây</h3>
-              <a href="#" style={{ fontSize: '13px', color: 'var(--primary)', fontWeight: '700', textDecoration: 'none' }}>Xem tất cả</a>
-            </div>
-            
-            <table className="data-table">
-              <thead>
-                <tr>
-                  <th>NGƯỜI DÙNG / VAI TRÒ</th>
-                  <th>NGÀY GỬI</th>
-                  <th>TRẠNG THÁI</th>
-                  <th style={{ textAlign: 'right' }}>HÀNH ĐỘNG</th>
-                </tr>
-              </thead>
-              <tbody>
-                <TableRow name="Elena Jacobs" role="CHỦ NHÀ" date="Oct 12, 2023" status="Đang chờ" statusClass="status-pending" initial="EJ" />
-                <TableRow name="Ryan Thompson" role="SINH VIÊN" date="Oct 11, 2023" status="Đã duyệt" statusClass="status-approved" initial="RT" />
-                <TableRow name="Sarah Kim" role="CHỦ NHÀ" date="Oct 10, 2023" status="Bị từ chối" statusClass="status-rejected" initial="SK" />
-              </tbody>
-            </table>
+        {/* CONTENT */}
+        <main className="admin-content">
+          <div className="page-header">
+            <h1>Chào buổi sáng, Quản trị viên</h1>
+            <p>Hôm nay là 24 tháng 5, 2024. Đây là những gì đang diễn ra trên hệ thống của bạn.</p>
           </div>
 
-          {/* Cột phải: Progress Bar (Yêu cầu 5 - Hình 4) */}
-          <div className="content-card">
-             <h3 style={{ margin: '0', fontSize: '18px', fontWeight: '800' }}>Yêu cầu xác minh gần đây</h3>
-             <p style={{fontSize: '12px', color: 'var(--text-grey)', margin: '5px 0 0 0'}}>Regional distribution of properties</p>
-             
-             <div className="progress-container">
-                <ProgressBar label="DOWNTOWN CAMPUS" percent="42" color="#2b59ff" />
-                <ProgressBar label="WEST END VILLAGE" percent="28" color="#317b62" />
-                <ProgressBar label="TECH DISTRICT" percent="18" color="#cc5d33" />
-                <ProgressBar label="SUBURBS" percent="12" color="#d3d5de" />
-             </div>
-
-             <div className="pro-tip">
-                <span className="material-symbols-outlined">lightbulb</span>
-                <p style={{fontSize: '13px', margin: 0, lineHeight: '1.5'}}>
-                   <strong>Pro-tip:</strong> Listings in "Tech District" have a 25% faster turnaround time this quarter.
-                </p>
-             </div>
+          {/* STATS GRID */}
+          <div className="stats-grid">
+            <StatCard 
+              title="Tổng sinh viên" value="12,482" trend="+12%" 
+              icon="person" bgIcon="group" colorType="primary" 
+            />
+            <StatCard 
+              title="Tổng chủ nhà" value="1,840" trend="+5%" 
+              icon="real_estate_agent" bgIcon="handshake" colorType="secondary" 
+            />
+            <StatCard 
+              title="Chờ phê duyệt" value="156" trend="Cần xử lý" 
+              icon="pending_actions" bgIcon="assignment_late" colorType="tertiary" 
+            />
+            <StatCard 
+              title="Doanh thu tháng" value="428.5M ₫" trend="+24%" 
+              icon="payments" bgIcon="account_balance_wallet" colorType="primary-solid" 
+            />
           </div>
-        </div>
 
-        {/* Yêu cầu 2: Các Action Cards dưới cùng (Hình 1) */}
-        <div className="action-cards-grid">
-           <ActionCard 
-             icon="person_add" title="Nhật ký hoạt động" 
-             desc="Kiểm tra các hành động quản trị trước đó" 
-             iconBg="#e9ecf8" iconColor="#2b59ff" 
-           />
-           <ActionCard 
-             icon="history_edu" title="Nhật ký hoạt động" 
-             desc="Kiểm tra các hành động quản trị trước đó" 
-             iconBg="#e6f4f1" iconColor="#317b62" 
-           />
-           <ActionCard 
-             icon="database" title="Sao lưu dữ liệu" 
-             desc="Bảo mật trạng thái cơ sở dữ liệu hiện tại" 
-             iconBg="#fbeceb" iconColor="#a44026" 
-           />
-        </div>
+          {/* MIDDLE SECTION */}
+          <div className="middle-grid">
+            {/* Table */}
+            <div className="content-card table-card">
+              <div className="card-header">
+                <h2>Yêu cầu xác minh gần đây</h2>
+                <button className="text-btn">Xem tất cả</button>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>CHỦ NHÀ</th>
+                    <th>TÀI LIỆU</th>
+                    <th>NGÀY GỬI</th>
+                    <th>TRẠNG THÁI</th>
+                    <th>HÀNH ĐỘNG</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <TableRow 
+                    initial="NH" name="Nguyễn Văn Hùng" docs="CCCD, Giấy phép kinh doanh" 
+                    time="2 giờ trước" status="CHỜ DUYỆT" statusType="warning" avatarType="primary"
+                  />
+                  <TableRow 
+                    initial="LT" name="Lê Thị Thu" docs="Sổ hồng, CCCD" 
+                    time="5 giờ trước" status="CHỜ DUYỆT" statusType="warning" avatarType="secondary"
+                  />
+                  <TableRow 
+                    initial="PT" name="Phạm Minh Tuấn" docs="CCCD" 
+                    time="Hôm qua" status="ĐÃ XÁC MINH" statusType="success" avatarType="primary"
+                  />
+                </tbody>
+              </table>
+            </div>
 
-      </main>
+            {/* Area Distribution */}
+            <div className="content-card distribution-card">
+              <h2>Phân bổ theo khu vực</h2>
+              <div className="progress-list">
+                <ProgressBar label="Quận Cầu Giấy" percent="42" barClass="bg-primary" />
+                <ProgressBar label="Quận Hai Bà Trưng" percent="28" barClass="bg-secondary" />
+                <ProgressBar label="Quận Đống Đa" percent="15" barClass="bg-tertiary" />
+                <ProgressBar label="Khu vực khác" percent="15" barClass="bg-grey" />
+              </div>
+              <div className="info-box">
+                <span className="material-symbols-outlined">info</span>
+                <p>Nhu cầu phòng trọ tại <b>Cầu Giấy</b> tăng 15% so với tháng trước do mùa nhập học.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* BOTTOM SECTION */}
+          <div className="bottom-grid">
+            {/* Image Card */}
+            <div className="featured-card">
+              <div className="overlay"></div>
+              <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800" alt="Office" />
+              <div className="featured-content">
+                <h3>Phân tích xu hướng thị trường</h3>
+                <p>Khám phá dữ liệu chuyên sâu về giá thuê và sự hài lòng của sinh viên trong học kỳ này.</p>
+                <button className="btn-white">Tải báo cáo PDF</button>
+              </div>
+            </div>
+
+            {/* Alert Card */}
+            <div className="alert-card">
+              <div>
+                <div className="alert-badge">
+                  <span className="material-symbols-outlined">warning</span>
+                  <span>Cảnh báo hệ thống</span>
+                </div>
+                <h3>Phát hiện 12 tài khoản giả mạo</h3>
+                <p>Hệ thống AI đã gắn cờ một số bài đăng có dấu hiệu lừa đảo tại khu vực Thủ Đức. Cần kiểm tra ngay lập tức.</p>
+              </div>
+              <div className="alert-actions">
+                <button className="btn-primary">Xử lý ngay</button>
+                <button className="btn-outline">Bỏ qua</button>
+              </div>
+            </div>
+          </div>
+
+        </main>
+      </div>
     </div>
   );
 };
 
 /* --- SUB COMPONENTS --- */
 
-const StatCard = ({ label, value, trend, trendColor, icon }) => (
-  <div className="stat-card">
-    <p className="label">{label}</p>
-    <p className="value">{value}</p>
-    <p className="trend" style={{ color: trendColor }}>{trend}</p>
-    <span className="material-symbols-outlined" style={{position:'absolute', right: '-10px', bottom: '-15px', opacity: 0.05, fontSize: '90px'}}>{icon}</span>
+const StatCard = ({ title, value, trend, icon, bgIcon, colorType }) => (
+  <div className={`stat-card border-${colorType}`}>
+    <div className="stat-header">
+      <div className={`icon-wrapper ${colorType}`}>
+        <span className="material-symbols-outlined">{icon}</span>
+      </div>
+      <span className={`trend-badge ${colorType}`}>{trend}</span>
+    </div>
+    <div className="stat-info">
+      <h3>{title}</h3>
+      <p>{value}</p>
+    </div>
+    <span className="material-symbols-outlined bg-icon">{bgIcon}</span>
   </div>
 );
 
-const TableRow = ({ name, role, date, status, statusClass, initial }) => (
+const TableRow = ({ initial, name, docs, time, status, statusType, avatarType }) => (
   <tr>
     <td>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <div style={{ width: '36px', height: '36px', background: '#e9ecf8', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '12px', fontWeight: '800', color: '#2b59ff' }}>
-          {initial}
-        </div>
-        <div>
-          <div style={{ fontWeight: '800', color: 'var(--text-main)' }}>{name}</div>
-          <div style={{ fontSize: '10px', color: 'var(--text-grey)', fontWeight: '700' }}>{role}</div>
-        </div>
+      <div className="user-cell">
+        <div className={`avatar-initial ${avatarType}`}>{initial}</div>
+        <span>{name}</span>
       </div>
     </td>
-    <td style={{ color: 'var(--text-grey)', fontWeight: '600' }}>{date}</td>
-    <td><span className={`status-badge ${statusClass}`}>{status}</span></td>
-    <td style={{ textAlign: 'right' }}>
-      <span className="material-symbols-outlined" style={{cursor: 'pointer', fontSize: '20px', color: '#2b59ff'}}>visibility</span>
+    <td className="text-muted">{docs}</td>
+    <td className="text-muted">{time}</td>
+    <td><span className={`status-badge ${statusType}`}>{status}</span></td>
+    <td>
+      <button className="action-btn"><span className="material-symbols-outlined">visibility</span></button>
     </td>
   </tr>
 );
 
-const ProgressBar = ({ label, percent, color }) => (
+const ProgressBar = ({ label, percent, barClass }) => (
   <div className="progress-item">
-    <div className="progress-header">
+    <div className="progress-labels">
       <span>{label}</span>
       <span>{percent}%</span>
     </div>
     <div className="progress-track">
-      <div className="progress-fill" style={{ width: `${percent}%`, backgroundColor: color }}></div>
-    </div>
-  </div>
-);
-
-const ActionCard = ({ icon, title, desc, iconBg, iconColor }) => (
-  <div className="action-card">
-    <div className="action-icon-wrapper" style={{ backgroundColor: iconBg, color: iconColor }}>
-      <span className="material-symbols-outlined" style={{ fontSize: '24px' }}>{icon}</span>
-    </div>
-    <div>
-      <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: '800' }}>{title}</h4>
-      <p style={{ margin: 0, fontSize: '11px', color: 'var(--text-grey)', lineHeight: '1.4' }}>{desc}</p>
+      <div className={`progress-fill ${barClass}`} style={{ width: `${percent}%` }}></div>
     </div>
   </div>
 );
