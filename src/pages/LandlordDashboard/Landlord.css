@@ -1,0 +1,379 @@
+/* --- HỆ THỐNG BIẾN (VARIABLES) --- */
+:root {
+    --primary: #1A73E8;
+    --primary-hover: #1557b0;
+    --primary-light: #eef2ff;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --bg-body: #f3f4f6;
+    --bg-card: #ffffff;
+    --text-main: #111827;
+    --text-sub: #6b7280;
+    --border: #e5e7eb;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --radius-lg: 20px;
+    --sidebar-width: 280px;
+}
+
+/* --- RESET CƠ BẢN --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.landlord-container {
+    display: flex;
+    min-height: 100vh;
+    margin-top: 72px;
+    gap: 30px; /* Thêm gap để tạo khoảng cách an toàn giữa Sidebar và Main */
+}
+
+/* --- SIDEBAR (THANH ĐIỀU HƯỚNG) --- */
+.landlord-sidebar {
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width); /* Đảm bảo sidebar không bị ép nhỏ lại */
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px 20px;
+    display: flex;
+    flex-direction: column;
+
+    /* Thay fixed bằng sticky để trải nghiệm cuộn mượt mà và không lỗi layout */
+    position: sticky;
+    top: 100px;
+
+    height: fit-content; /* Ôm vừa vặn nội dung menu thay vì cố định 70vh */
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-bottom: 50px;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--primary);
+    padding: 0 12px;
+    margin-bottom: 48px;
+    letter-spacing: -0.5px;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-item {
+    padding: 14px 16px;
+    border-radius: 12px;
+    color: var(--text-sub);
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-item:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.nav-item.active {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.25);
+}
+
+/* --- NỘI DUNG CHÍNH --- */
+.landlord-main {
+    flex: 1;
+    /* Đã xóa margin-left: var(--sidebar-width) vì dùng flexbox tự đẩy */
+    padding: 50px 60px 50px 0; /* Bỏ padding trái vì đã có gap ở container */
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.main-header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: white;
+    padding: 8px 16px;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+}
+
+.badge-verified {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--success);
+    background: #dcfce7;
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* --- CARD SYSTEM --- */
+.card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 24px;
+}
+
+.card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* --- DANH SÁCH LỊCH HẸN --- */
+.appointment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.appointment-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.appointment-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
+}
+
+.date-tag {
+    background: var(--primary-light);
+    color: var(--primary);
+    padding: 10px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 800;
+    min-width: 55px;
+    line-height: 1.2;
+}
+
+.date-tag span {
+    font-size: 11px;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+.apt-details {
+    flex: 1;
+}
+
+.apt-details h4 {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.apt-details p {
+    color: var(--text-sub);
+    font-size: 14px;
+}
+
+.status-badge {
+    background: #f3f4f6;
+    padding: 2px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* --- DANH SÁCH TIN ĐĂNG --- */
+.listing-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.listing-item:last-child { border-bottom: none; }
+
+.listing-item img {
+    width: 110px;
+    height: 75px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.listing-info h4 {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+/* --- GÓI ĐẨY TIN --- */
+.ad-package-box {
+    background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+}
+
+.package-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.package-info span.warning {
+    color: var(--danger);
+    font-weight: 700;
+    animation: pulse 2s infinite;
+}
+
+.progress-bar-bg {
+    height: 10px;
+    background: #e5e7eb;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 20px;
+    transition: width 0.8s ease-out;
+}
+
+/* --- HỆ THỐNG NÚT BẤM (BUTTONS) --- */
+button {
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+}
+
+.btn-primary-outline {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid var(--primary);
+    background: transparent;
+    color: var(--primary);
+    border-radius: 14px;
+    font-weight: 700;
+}
+
+.btn-primary-outline:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-danger {
+    background: #fef2f2;
+    color: var(--danger);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.btn-danger:hover {
+    background: var(--danger);
+    color: white;
+}
+
+.btn-text {
+    background: transparent;
+    border: none;
+    color: var(--primary);
+    font-weight: 700;
+    padding: 8px 12px;
+}
+
+.btn-primary-small {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+/* --- TIỆN ÍCH KHÁC --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 30px;
+    align-items: start;
+}
+
+.report-item {
+    background: #fffafb;
+    border: 1px solid #fee2e2;
+    padding: 20px;
+    border-radius: 16px;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+    .landlord-container {
+        flex-direction: column;
+    }
+
+    .landlord-sidebar {
+        position: static;
+        width: calc(100% - 100px);
+        margin: 20px 50px;
+        height: auto;
+    }
+
+    .landlord-main {
+        padding: 0 50px 50px 50px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 768px) {
+    .landlord-sidebar, .landlord-main {
+        width: 100%;
+        margin: 20px 0;
+        padding: 20px;
+    }
+}
