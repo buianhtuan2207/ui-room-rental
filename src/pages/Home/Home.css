@@ -158,7 +158,7 @@
 
 .home-bg-light-gray { background-color: #f9fafb; padding: 80px 24px; border-radius: 60px; }
 
-.home-btn-text-link { background: none; border: none; color: var(--home-primary); font-weight: 700; cursor: pointer; }
+.home-btn-text-link { background: none; border: none; color: var(--home-primary); font-weight: 700; cursor: pointer; text-decoration: none; }
 
 .home-wide-card {
     display: flex;
@@ -209,6 +209,7 @@
     border-radius: 12px;
     font-weight: 700;
     cursor: pointer;
+    text-decoration: none;
 }
 
 /* 4. Promo Banner */
@@ -258,4 +259,145 @@
 
 .home-btn-white:hover, .home-btn-outline-white:hover {
     transform: translateY(-3px);
+}
+/* =========================================
+   RESPONSIVE DESIGN (MEDIA QUERIES)
+========================================= */
+
+/* --- TABLET (Dưới 1024px) --- */
+@media screen and (max-width: 1024px) {
+    /* Bento Grid */
+    .home-bento-grid {
+        height: auto;
+        min-height: 450px;
+    }
+
+    /* Wide Card */
+    .home-card-info {
+        padding: 32px;
+    }
+
+    /* Promo Banner */
+    .home-promo-banner {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+        padding: 48px 32px;
+    }
+    .home-promo-content p {
+        margin: 0 auto 32px auto;
+    }
+    .home-btn-white {
+        margin-right: 0;
+        margin-bottom: 16px;
+    }
+}
+
+/* --- MOBILE (Dưới 768px) --- */
+@media screen and (max-width: 768px) {
+    /* Hero Section */
+    .home-hero-section {
+        min-height: 500px;
+        padding: 80px 20px;
+    }
+    .home-hero-title {
+        font-size: 36px; /* Thu nhỏ tiêu đề */
+        margin-bottom: 16px;
+    }
+    .home-hero-subtitle {
+        font-size: 15px;
+        margin-bottom: 32px;
+    }
+
+    /* Search Bar */
+    .home-search-bar-container {
+        flex-direction: column; /* Xếp dọc các input */
+        padding: 16px;
+        border-radius: 20px;
+    }
+    .home-search-fields {
+        flex-direction: column;
+        gap: 0;
+    }
+    .home-field-group {
+        padding: 12px 4px;
+    }
+    .home-border-right {
+        border-right: none;
+        border-bottom: 1px solid var(--home-border-color); /* Chuyển viền dọc thành viền ngang */
+    }
+    .home-btn-search-main {
+        width: 100%; /* Nút tìm kiếm full width */
+        margin-top: 12px;
+    }
+
+    /* Sections Chung */
+    .home-section-container {
+        margin: 40px auto;
+    }
+    .home-bg-light-gray {
+        padding: 40px 20px;
+        border-radius: 32px;
+    }
+    .home-section-headline {
+        font-size: 26px;
+    }
+    .home-flex-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    /* Bento Grid */
+    .home-bento-grid {
+        grid-template-columns: 1fr; /* Tràn 1 cột */
+        gap: 16px;
+    }
+    .home-bento-item {
+        min-height: 250px;
+    }
+    .home-bento-overlay {
+        padding: 24px;
+    }
+
+    /* Wide Card */
+    .home-wide-card {
+        flex-direction: column; /* Hình ảnh lên trên, text xuống dưới */
+    }
+    .home-card-img-box {
+        width: 100%;
+        min-height: 240px;
+    }
+    .home-card-info {
+        width: 100%;
+        padding: 24px;
+    }
+    .home-card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    .home-btn-primary-sm {
+        width: 100%; /* Nút full width trên điện thoại */
+        text-align: center;
+    }
+
+    /* Promo Banner */
+    .home-promo-banner {
+        border-radius: 24px;
+        padding: 32px 20px;
+    }
+    .home-promo-content h2 {
+        font-size: 28px;
+    }
+    .home-promo-stats {
+        flex-direction: column; /* Xếp dọc các thông số */
+        width: 100%;
+        gap: 12px;
+    }
+    .home-btn-white,
+    .home-btn-outline-white {
+        display: block;
+        width: 100%;
+    }
 }
