@@ -1,5 +1,6 @@
 import React from 'react';
 import './Home.css';
+import {Link} from "react-router-dom";
 
 function Home() {
     return (
@@ -20,16 +21,15 @@ function Home() {
 
                     <div className="home-search-bar-container">
                         <div className="home-search-fields">
+
                             <div className="home-field-group home-border-right">
-                                <label>Vị trí</label>
+                                <label>Khu vực</label>
                                 <div className="home-input-with-icon">
-                                    <input type="text" placeholder="Khu vực, Quận..." />
-                                </div>
-                            </div>
-                            <div className="home-field-group home-border-right">
-                                <label>Trường đại học</label>
-                                <div className="home-input-with-icon">
-                                    <input type="text" placeholder="Đại học Bách Khoa..." />
+                                    <select>
+                                        <option>TP.HCM</option>
+                                        <option>Bình Dương</option>
+                                        <option>Cần Thơ</option>
+                                    </select>
                                 </div>
                             </div>
                             <div className="home-field-group">
@@ -79,7 +79,9 @@ function Home() {
             <section className="home-section-container home-bg-light-gray">
                 <div className="home-flex-header">
                     <h2 className="home-section-headline">Phòng tốt nhất gần trường</h2>
-                    <button className="home-btn-text-link">Xem tất cả →</button>
+                    <Link to="/room" className="home-btn-text-link">
+                        Xem tất cả →
+                    </Link>
                 </div>
 
                 <div className="home-wide-card">
@@ -102,7 +104,9 @@ function Home() {
                             <span className="home-verified">
                                 <span className="material-symbols-outlined">verified</span> Chủ nhà tin cậy
                             </span>
-                            <button className="home-btn-primary-sm">Xem chi tiết</button>
+                            <Link to="/detail" className="home-btn-primary-sm">
+                                Xem chi tiết
+                            </Link>
                         </div>
                     </div>
                 </div>

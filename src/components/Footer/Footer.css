@@ -159,14 +159,26 @@
 
 @media (max-width: 768px) {
     .footer-links-wrapper {
-        grid-template-columns: repeat(2, 1fr);
         display: grid;
+        grid-template-columns: repeat(1, 1fr); /* Chuyển thành 1 cột */
+        gap: 32px; /* Thêm khoảng cách giữa các khối link-group */
     }
+
+    /* Viết tách rời .link-group ra ngoài */
+    .footer-links-wrapper .link-group {
+        display: flex;
+        flex-direction: column; /* BẮT BUỘC: Xếp dọc các link từ trên xuống */
+        align-items: center;    /* Căn giữa toàn bộ chữ theo chiều ngang */
+        text-align: center;
+        gap: 12px; /* Khoảng cách giữa tiêu đề và các dòng link */
+    }
+
     .footer-bottom {
         flex-direction: column;
         text-align: center;
         gap: 15px;
     }
+
     .footer-legal-links {
         flex-wrap: wrap;
         justify-content: center;
