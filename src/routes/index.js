@@ -14,9 +14,11 @@ import Favorites from "../pages/Favorites";
 import Chat from "../pages/Chat";
 import Profile from "../pages/Profile";
 import LandlordDashboard from "../pages/LandlordDashboard";
+import Pricing from "../pages/Pricing";
 import Blacklist from "../pages/Blacklist";
 import FinancialManagement from "../pages/Finance";
 import PostManagement from "../pages/PostManagement";
+import VoucherManagement from "../pages/VoucherManagement";
 
 
 // Import trang Admin Dashboard cũ
@@ -52,6 +54,9 @@ function AppRoutes() {
 
             {/* Route quản lý bài đăng */}
             <Route path="/admin/post-management" element={<PostManagement />} />
+            
+            {/* Route quản lý voucher */}
+            <Route path="/admin/voucher-management" element={<VoucherManagement />} />
 
             {/* 3. Nhóm Route dùng MainLayout cho khách hàng */}
             <Route element={<MainLayout />}>
@@ -62,6 +67,7 @@ function AppRoutes() {
                 <Route path="/favorites" element={<Favorites />} />
                 <Route path="/post" element={<PostRoom />} />
                 <Route path="/landlord" element={<LandlordDashboard />} />
+                <Route path="/pricing" element={<Pricing />} />
             </Route>
 
             {/* 4. Điều hướng mặc định */}

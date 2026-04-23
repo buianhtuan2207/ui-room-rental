@@ -101,3 +101,119 @@
 .nav-link-active {
     color: #1a73e8;
 }
+
+/* --- NÚT MENU MOBILE --- */
+.mobile-menu-btn {
+    display: none; /* Mặc định ẨN trên màn hình lớn */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #111827;
+    padding: 0;
+    margin-right: 16px;
+}
+
+.mobile-menu-btn .material-symbols-outlined {
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+}
+
+/* =========================================
+   RESPONSIVE CHO HEADER (MEDIA QUERIES)
+========================================= */
+
+/* --- LAPTOT/TABLET NGANG (Dưới 1200px) --- */
+@media screen and (max-width: 1200px) {
+    .brand-and-nav {
+        gap: 40px; /* Giảm khoảng cách giữa Logo và Menu */
+    }
+    .search-container {
+        margin-right: 40px; /* Giảm khoảng cách từ Search đến Nút Login */
+    }
+    .btn-login {
+        margin-right: 0; /* Bỏ lề phải thừa ở cuối */
+    }
+}
+
+/* --- TABLET (Dưới 1024px) --- */
+@media screen and (max-width: 1024px) {
+    .brand-and-nav {
+        gap: 24px;
+    }
+    .header-nav-links {
+        gap: 16px; /* Các link menu gần nhau hơn */
+    }
+    .nav-link, .nav-link-active {
+        font-size: 15px; /* Thu nhỏ chữ menu 1 chút */
+    }
+    .search-container {
+        width: 200px; /* Thu nhỏ độ dài thanh tìm kiếm */
+        margin-right: 24px;
+    }
+}
+
+/* --- MOBILE & TABLET NHỎ (Dưới 768px) --- */
+@media screen and (max-width: 768px) {
+    .header-container {
+        padding: 0 16px;
+        justify-content: space-between;
+    }
+
+    /* Ẩn thanh tìm kiếm dài */
+    .search-container {
+        display: none;
+    }
+
+    .brand-and-nav {
+        gap: 0;
+    }
+
+    .header-logo {
+        font-size: 20px;
+    }
+
+    .btn-login {
+        padding: 6px 16px;
+        font-size: 13px;
+        margin-right: 0;
+    }
+
+    /* Thiết lập Menu mặc định ẩn và nằm dọc dưới Header */
+    .header-nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 24px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        border-top: 1px solid #E5E7EB;
+        gap: 24px;
+        z-index: 999;
+    }
+
+    /* Hiển thị Menu khi có class .open */
+    .header-nav-links.open {
+        display: flex;
+    }
+
+    /* Chỉnh lại font size cho link trên mobile dễ bấm hơn */
+    .nav-link, .nav-link-active {
+        font-size: 16px;
+        width: 100%;
+        display: block;
+    }
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    /* Đảm bảo căn chỉnh lại khối logo và nút */
+    .brand-and-nav {
+        gap: 0;
+        align-items: center; /* Thêm căn giữa dọc để icon và chữ cân đối */
+    }
+}

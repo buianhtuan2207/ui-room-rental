@@ -8,6 +8,7 @@ import {
     IconFavorite,
     IconSchool
 } from '../../assets/Icons';
+import {useNavigate} from "react-router-dom";
 
 function PropertyCard({ data }) {
     const room = data || {
@@ -17,6 +18,13 @@ function PropertyCard({ data }) {
         image: "https://picsum.photos/400/300",
         isVerified: true,
         status: "Còn trống"
+    };
+
+    const navigate = useNavigate();
+
+    const handleLoginClick = () => {
+        // Có thể thêm logic ở đây
+        navigate('/favorites');
     };
 
     return (
@@ -29,7 +37,7 @@ function PropertyCard({ data }) {
                     <span className="price-unit">/ tháng</span>
                 </div>
 
-                <button className="btn-favorite">
+                <button onClick={handleLoginClick} className="btn-favorite">
                     <IconFavorite width="20" height="20" />
                 </button>
 
