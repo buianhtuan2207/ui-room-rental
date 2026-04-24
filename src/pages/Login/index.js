@@ -22,8 +22,7 @@ export default function Login() {
             const data = await loginApi(username, password);
             console.log('Đăng nhập thành công:', data);
 
-            // 3. THAY ĐỔI Ở ĐÂY: Dùng hàm login của Context thay vì tự set localStorage
-            // Lưu ý: data.token hay data.accessToken phụ thuộc vào JSON bên Spring Boot trả về (xem trong Postman)
+            // Dùng hàm login của Context thay vì tự set localStorage
             const token = data.token || data.accessToken;
 
             // Tạm thời truyền username vào làm dữ liệu user để Header hiển thị
@@ -32,7 +31,19 @@ export default function Login() {
             // Chuyển hướng về trang chủ
             navigate("/");
         } catch (err) {
-            setError(err.message || 'Đã có lỗi xảy ra. Vui lòng thử lại!');
+            // ==========================================
+            // XỬ LÝ LỖI: TÀI KHOẢN CHƯA XÁC THỰC
+            // ==========================================
+            const errorMessage = err.message || '';
+
+            // Bạn có thể đổi chữ "xác thực" thành câu lỗi chính xác mà Backend của bạn trả về
+            if (errorMessage.toLowerCase().includes('xác thực') || errorMessage.toLowerCase().includes('verified')) {
+                // Tự động chuyển hướng sang trang OTP và mang theo username/email
+                navigate('/verify-otp', { state: { email: username } });
+            } else {
+                // Các lỗi khác như sai pass, sai tài khoản
+                setError(errorMessage || 'Sai tài khoản hoặc mật khẩu!');
+            }
         } finally {
             setIsLoading(false);
         }
@@ -46,7 +57,7 @@ export default function Login() {
                     alt="Student lifestyle"
                     className="sidebar-bg-image"
                     data-alt="Interior of a modern, sunlit student studio apartment"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl81tafVGBuCzi_5AFA66svAObZqlNcghAsTmSWqqyYOUSsFY9BU7oGSZTv4VxTZ2J_3rG80iXlAJhrAL9t2WqwiQ0hZcRaVKnhbGsCchEgsJ5B7_t-WAqbzlbPXocsCloPY0Sw95VsFeg7rqYdCep5EhxH9Dv9lGm0MMMfVZALlHi-KP_WS1via79gkv8rY-wZ83dJhovJsspTDdo9ZOmhcdhNRFAxM2YPB8goWlH7AfRlUENLhY5RBF2WF-C-Y_XQ_2j6DZMCfRm"
+                    src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1000&auto=format&fit=crop"
                 />
                 <div className="sidebar-gradient-overlay"></div>
 
@@ -127,7 +138,7 @@ export default function Login() {
                         <span className="divider-text">Hoặc bằng tài khoản</span>
                     </div>
 
-                    {/* 3. Khu vực hiển thị thông báo lỗi */}
+                    {/* Khu vực hiển thị thông báo lỗi */}
                     {error && (
                         <div style={{ color: '#dc3545', backgroundColor: '#f8d7da', padding: '10px', borderRadius: '4px', marginBottom: '15px', fontSize: '14px', textAlign: 'center' }}>
                             {error}
@@ -138,7 +149,6 @@ export default function Login() {
                     <form className="login-form" onSubmit={handleLogin}>
                         <div className="form-group">
                             <label className="input-label">Tên đăng nhập / Email</label>
-                            {/* 4. Thêm value và onChange cho ô nhập liệu */}
                             <input
                                 className="input-field"
                                 placeholder="Nhập tên đăng nhập..."
@@ -153,7 +163,6 @@ export default function Login() {
                                 <label className="input-label">Mật khẩu</label>
                                 <Link className="forgot-link" to="/forgot-password">Quên mật khẩu?</Link>
                             </div>
-                            {/* 5. Thêm value và onChange cho mật khẩu */}
                             <input
                                 className="input-field"
                                 placeholder="••••••••"
@@ -168,7 +177,7 @@ export default function Login() {
                             <label className="checkbox-label" htmlFor="remember">Ghi nhớ đăng nhập</label>
                         </div>
 
-                        {/* 6. Vô hiệu hoá nút bấm khi đang tải (loading) */}
+                        {/* Nút đăng nhập */}
                         <button
                             className="btn-submit"
                             type="submit"
@@ -179,16 +188,22 @@ export default function Login() {
                         </button>
                     </form>
 
-                    {/* Footer Link */}
-                    <div className="form-footer">
+                    {/* ========================================== */}
+                    {/* THÊM LỐI ĐI THỦ CÔNG CHO NGƯỜI CHƯA XÁC THỰC */}
+                    {/* ========================================== */}
+                    <div className="form-footer" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        <p className="footer-text">
+                            Chưa xác thực tài khoản?
+                            <Link className="register-link" to="/verify" style={{ marginLeft: '5px' }}>Xác thực ngay</Link>
+                        </p>
                         <p className="footer-text">
                             Chưa có tài khoản?
-                            <Link className="register-link" to="/register">Đăng ký</Link>
+                            <Link className="register-link" to="/register" style={{ marginLeft: '5px' }}>Đăng ký</Link>
                         </p>
                     </div>
 
                     {/* Trust Badge */}
-                    <div className="trust-badges">
+                    <div className="trust-badges" style={{ marginTop: '20px' }}>
                         <div className="badge-item">
                             <span className="material-symbols-outlined badge-icon">verified_user</span>
                             <span className="badge-text">Secure Login</span>
