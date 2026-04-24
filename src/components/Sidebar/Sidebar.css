@@ -132,3 +132,72 @@
     color: #44474e;
     margin: 0;
 }
+/* Layout cho header tiện ích có chứa mũi tên */
+.filter-header-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 12px;
+    user-select: none;
+}
+
+.filter-header-toggle:hover .filter-title {
+    color: #1A73E8; /* Màu highlight khi hover */
+}
+
+.filter-header-toggle .filter-title {
+    margin-bottom: 0; /* Ghi đè margin mặc định của title */
+    transition: color 0.2s;
+}
+
+/* Hiệu ứng xoay mũi tên */
+.toggle-icon {
+    transition: transform 0.3s ease;
+    color: #747780;
+}
+
+.toggle-icon.rotated {
+    transform: rotate(90deg); /* Xoay xuống khi mở */
+}
+
+/* Danh sách tiện ích */
+.amenity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.amenity-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #444;
+}
+
+.amenity-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+/* Nút text xem thêm */
+.show-more-text {
+    background: none;
+    border: none;
+    color: #1A73E8;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 10px;
+    display: block;
+}
+
+.show-more-text:hover {
+    text-decoration: underline;
+}

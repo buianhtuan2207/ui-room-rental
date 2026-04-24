@@ -43,7 +43,7 @@ function Header() {
                     </Link>
 
                     <div className={`header-nav-links ${isMenuOpen ? 'open' : ''}`}>
-                        <NavLink to="/room" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
+                        <NavLink to="/postlist" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
                             Phòng
                         </NavLink>
                         <NavLink to="/pricing" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
