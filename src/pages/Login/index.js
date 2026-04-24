@@ -1,29 +1,55 @@
-// mport React from 'react';
-// 1. Import thêm Link từ react-router-dom
-import { useNavigate, Link } from 'react-router-dom'; 
-import './Login.css'; 
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { loginApi } from '../../services/authService';
+import { useAuth } from '../../context/authContext';
+import './Login.css';
 
 export default function Login() {
     const navigate = useNavigate();
+    const { login } = useAuth();
 
-    const handleLogin = (e) => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleLogin = async (e) => {
         e.preventDefault();
-        // Tạm thời click Đăng nhập sẽ chuyển về Trang chủ
-        navigate("/");
+        setError('');
+        setIsLoading(true);
+
+        try {
+            const data = await loginApi(username, password);
+            console.log('Đăng nhập thành công:', data);
+
+            // 3. THAY ĐỔI Ở ĐÂY: Dùng hàm login của Context thay vì tự set localStorage
+            // Lưu ý: data.token hay data.accessToken phụ thuộc vào JSON bên Spring Boot trả về (xem trong Postman)
+            const token = data.token || data.accessToken;
+
+            // Tạm thời truyền username vào làm dữ liệu user để Header hiển thị
+            login({ username: username }, token);
+
+            // Chuyển hướng về trang chủ
+            navigate("/");
+        } catch (err) {
+            setError(err.message || 'Đã có lỗi xảy ra. Vui lòng thử lại!');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
         <main className="login-container">
             {/* Left Side: Editorial Lifestyle Imagery */}
             <section className="login-sidebar">
-                <img 
-                    alt="Student lifestyle" 
-                    className="sidebar-bg-image" 
-                    data-alt="Interior of a modern, sunlit student studio apartment" 
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl81tafVGBuCzi_5AFA66svAObZqlNcghAsTmSWqqyYOUSsFY9BU7oGSZTv4VxTZ2J_3rG80iXlAJhrAL9t2WqwiQ0hZcRaVKnhbGsCchEgsJ5B7_t-WAqbzlbPXocsCloPY0Sw95VsFeg7rqYdCep5EhxH9Dv9lGm0MMMfVZALlHi-KP_WS1via79gkv8rY-wZ83dJhovJsspTDdo9ZOmhcdhNRFAxM2YPB8goWlH7AfRlUENLhY5RBF2WF-C-Y_XQ_2j6DZMCfRm" 
+                <img
+                    alt="Student lifestyle"
+                    className="sidebar-bg-image"
+                    data-alt="Interior of a modern, sunlit student studio apartment"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl81tafVGBuCzi_5AFA66svAObZqlNcghAsTmSWqqyYOUSsFY9BU7oGSZTv4VxTZ2J_3rG80iXlAJhrAL9t2WqwiQ0hZcRaVKnhbGsCchEgsJ5B7_t-WAqbzlbPXocsCloPY0Sw95VsFeg7rqYdCep5EhxH9Dv9lGm0MMMfVZALlHi-KP_WS1via79gkv8rY-wZ83dJhovJsspTDdo9ZOmhcdhNRFAxM2YPB8goWlH7AfRlUENLhY5RBF2WF-C-Y_XQ_2j6DZMCfRm"
                 />
                 <div className="sidebar-gradient-overlay"></div>
-                
+
                 {/* Branding Content */}
                 <div className="sidebar-content">
                     <div className="brand-header">
@@ -98,38 +124,66 @@ export default function Login() {
                         <div className="divider-line-wrapper">
                             <div className="divider-line"></div>
                         </div>
-                        <span className="divider-text">Hoặc bằng Email</span>
+                        <span className="divider-text">Hoặc bằng tài khoản</span>
                     </div>
+
+                    {/* 3. Khu vực hiển thị thông báo lỗi */}
+                    {error && (
+                        <div style={{ color: '#dc3545', backgroundColor: '#f8d7da', padding: '10px', borderRadius: '4px', marginBottom: '15px', fontSize: '14px', textAlign: 'center' }}>
+                            {error}
+                        </div>
+                    )}
 
                     {/* Credentials Form */}
                     <form className="login-form" onSubmit={handleLogin}>
                         <div className="form-group">
-                            <label className="input-label">Email của bạn</label>
-                            <input className="input-field" placeholder="example@domain.com" type="email" required />
+                            <label className="input-label">Tên đăng nhập / Email</label>
+                            {/* 4. Thêm value và onChange cho ô nhập liệu */}
+                            <input
+                                className="input-field"
+                                placeholder="Nhập tên đăng nhập..."
+                                type="text"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                required
+                            />
                         </div>
                         <div className="form-group">
                             <div className="input-header">
                                 <label className="input-label">Mật khẩu</label>
-                                {/* 2. Thay đổi ở đây: Chuyển hướng đến Quên mật khẩu */}
                                 <Link className="forgot-link" to="/forgot-password">Quên mật khẩu?</Link>
                             </div>
-                            <input className="input-field" placeholder="••••••••" type="password" required />
+                            {/* 5. Thêm value và onChange cho mật khẩu */}
+                            <input
+                                className="input-field"
+                                placeholder="••••••••"
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
                         </div>
                         <div className="checkbox-group">
                             <input className="checkbox-input" id="remember" type="checkbox" />
                             <label className="checkbox-label" htmlFor="remember">Ghi nhớ đăng nhập</label>
                         </div>
-                        <button className="btn-submit" type="submit">
-                            Đăng nhập ngay
+
+                        {/* 6. Vô hiệu hoá nút bấm khi đang tải (loading) */}
+                        <button
+                            className="btn-submit"
+                            type="submit"
+                            disabled={isLoading}
+                            style={{ opacity: isLoading ? 0.7 : 1, cursor: isLoading ? 'not-allowed' : 'pointer' }}
+                        >
+                            {isLoading ? 'Đang xử lý...' : 'Đăng nhập'}
                         </button>
                     </form>
 
                     {/* Footer Link */}
                     <div className="form-footer">
                         <p className="footer-text">
-                            Chưa có tài khoản? 
-                            {/* 3. Thay đổi ở đây: Chuyển hướng đến Đăng ký */}
-                            <Link className="register-link" to="/register">Đăng ký ngay</Link>
+                            Chưa có tài khoản?
+                            <Link className="register-link" to="/register">Đăng ký</Link>
                         </p>
                     </div>
 
