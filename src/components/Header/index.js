@@ -1,30 +1,37 @@
-import React, {useState} from 'react';
-import {Link, NavLink, useNavigate} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import './Header.css';
-import {IconSearch} from "../../assets/Icons";
+import { IconSearch } from "../../assets/Icons";
+import { useAuth } from '../../context/authContext';
 
-
-function Header (){
+function Header() {
     const navigate = useNavigate();
+
+    // 2. Gọi user và hàm logout từ AuthContext
+    const { user, logout } = useAuth();
 
     const handleLoginClick = () => {
         navigate('/login');
     };
 
-    // State để quản lý trạng thái mở/đóng menu trên mobile
+    // Hàm xử lý đăng xuất
+    const handleLogoutClick = () => {
+        logout(); // Xóa thông tin user và token trong Context & localStorage
+        navigate('/login'); // Chuyển hướng người dùng về lại trang đăng nhập (hoặc trang chủ '/')
+    };
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    // Hàm toggle menu
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+
     return (
         <nav className="header-nav">
             <div className="header-container">
 
                 <div className="brand-and-nav">
 
-                    {/* Nút Hamburger 3 gạch (Chỉ hiện trên mobile) */}
                     <button className="mobile-menu-btn" onClick={toggleMenu}>
                     <span className="material-symbols-outlined">
                         {isMenuOpen ? 'close' : 'menu'}
@@ -35,9 +42,8 @@ function Header (){
                         TroSinhVien
                     </Link>
 
-                    {/* Danh sách Menu - Thêm class 'open' nếu state isMenuOpen là true */}
                     <div className={`header-nav-links ${isMenuOpen ? 'open' : ''}`}>
-                        <NavLink to="/room" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
+                        <NavLink to="/postlist" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
                             Phòng
                         </NavLink>
                         <NavLink to="/pricing" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
@@ -60,7 +66,25 @@ function Header (){
                     <input className="search-input" placeholder="Search..." type="text"/>
                 </div>
 
-                <button onClick={handleLoginClick} className="btn-login">Đăng nhập</button>
+                {/* 3. Render giao diện có điều kiện dựa trên trạng thái user */}
+                <div className="header-auth-section">
+                    {user ? (
+                        // Nếu ĐÃ đăng nhập
+                        <div className="user-profile" style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                            <span className="welcome-text">
+                                Chào, <strong>{user.username}</strong>
+                            </span>
+                            <button onClick={handleLogoutClick} className="btn-logout" style={{ cursor: 'pointer', padding: '6px 12px', borderRadius: '4px', border: '1px solid #ccc', backgroundColor: '#f8f9fa' }}>
+                                Đăng xuất
+                            </button>
+                        </div>
+                    ) : (
+                        // Nếu CHƯA đăng nhập
+                        <button onClick={handleLoginClick} className="btn-login">
+                            Đăng nhập
+                        </button>
+                    )}
+                </div>
 
             </div>
         </nav>

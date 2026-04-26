@@ -1,15 +1,74 @@
-
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { registerApi } from '../../services/authService';
 import './Register.css';
 
 export default function Register() {
-    const [role, setRole] = useState('student'); // 'student' hoặc 'landlord'
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    // State quản lý role (Chuyển đổi: 'student' -> 'USER', 'landlord' -> 'HOST' khi gọi API)
+    const [role, setRole] = useState('student');
+
+    // State quản lý dữ liệu form
+    const [formData, setFormData] = useState({
+        fullName: '',
+        email: '',
+        phone: '',
+        university: '',
+        password: '',
+        confirmPassword: ''
+    });
+
+    // State quản lý trạng thái xử lý
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+
+    // Hàm cập nhật state khi gõ input
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Đăng ký với vai trò:", role);
-        // Xử lý logic gọi API đăng ký tại đây
+        setError('');
+        setSuccess('');
+
+        // 1. Validate: Kiểm tra mật khẩu xác nhận
+        if (formData.password !== formData.confirmPassword) {
+            return setError('Passwords do not match! (Mật khẩu không khớp)');
+        }
+
+        setIsLoading(true);
+
+        try {
+            // 2. Chuẩn bị dữ liệu gửi lên Backend (Khớp với Postman của bạn)
+            const payload = {
+                username: formData.fullName, // Dùng Full Name làm username (hoặc bạn có thể tạo ô nhập username riêng)
+                email: formData.email,
+                password: formData.password,
+                role: role === 'student' ? 'USER' : 'HOST' // Chuyển đổi role cho đúng chuẩn Backend
+            };
+
+            // 3. Gọi API
+            const data = await registerApi(payload);
+
+            setSuccess('Registration successful! Redirecting to login...'); // Đăng ký thành công
+
+            // 4. Đợi 2 giây để người dùng đọc thông báo rồi chuyển về trang Login
+            setTimeout(() => {
+                navigate('/verify');
+            }, 2000);
+
+        } catch (err) {
+            setError(err.message || 'Registration failed. Please try again!');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -18,14 +77,14 @@ export default function Register() {
                 {/* Left Side: Value Proposition & Branding */}
                 <section className="register-sidebar">
                     <div className="sidebar-bg-wrapper">
-                        <img 
-                            className="sidebar-bg-image" 
-                            src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop" 
+                        <img
+                            className="sidebar-bg-image"
+                            src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop"
                             alt="Luxury Student Living Room"
                         />
                         <div className="sidebar-gradient-overlay"></div>
                     </div>
-                    
+
                     <div className="sidebar-content">
                         <div className="sidebar-brand">
                             <span className="brand-icon">
@@ -33,11 +92,11 @@ export default function Register() {
                             </span>
                             <span className="brand-text">The Curated Sanctuary</span>
                         </div>
-                        
+
                         <div className="sidebar-hero">
                             <h1 className="hero-title">Elevate Your Living Experience.</h1>
                             <p className="hero-desc">Join an exclusive community of students and premium landlords dedicated to refined living and academic excellence.</p>
-                            
+
                             <div className="feature-cards">
                                 <div className="glass-card">
                                     <span className="material-symbols-outlined card-icon">verified_user</span>
@@ -70,18 +129,30 @@ export default function Register() {
                             <p className="form-subtitle">Start your journey toward a curated sanctuary today.</p>
                         </div>
 
+                        {/* HIỂN THỊ THÔNG BÁO LỖI / THÀNH CÔNG */}
+                        {error && (
+                            <div style={{ color: '#dc3545', backgroundColor: '#f8d7da', padding: '10px', borderRadius: '4px', marginBottom: '15px', fontSize: '14px', textAlign: 'center' }}>
+                                {error}
+                            </div>
+                        )}
+                        {success && (
+                            <div style={{ color: '#198754', backgroundColor: '#d1e7dd', padding: '10px', borderRadius: '4px', marginBottom: '15px', fontSize: '14px', textAlign: 'center' }}>
+                                {success}
+                            </div>
+                        )}
+
                         <form className="register-form" onSubmit={handleSubmit}>
                             {/* User Role Toggle */}
                             <div className="role-toggle">
-                                <button 
-                                    type="button" 
+                                <button
+                                    type="button"
                                     className={`toggle-btn ${role === 'student' ? 'active' : ''}`}
                                     onClick={() => setRole('student')}
                                 >
                                     Student
                                 </button>
-                                <button 
-                                    type="button" 
+                                <button
+                                    type="button"
                                     className={`toggle-btn ${role === 'landlord' ? 'active' : ''}`}
                                     onClick={() => setRole('landlord')}
                                 >
@@ -93,27 +164,56 @@ export default function Register() {
                                 {/* Full Name */}
                                 <div className="input-group">
                                     <label className="input-label">Full Name</label>
-                                    <input className="text-input" type="text" placeholder="Alex Morgan" required />
+                                    <input
+                                        className="text-input"
+                                        type="text"
+                                        name="fullName"
+                                        value={formData.fullName}
+                                        onChange={handleChange}
+                                        placeholder="Alex Morgan"
+                                        required
+                                    />
                                 </div>
 
                                 {/* Email */}
                                 <div className="input-group">
                                     <label className="input-label">Email Address</label>
-                                    <input className="text-input" type="email" placeholder="alex@university.edu" required />
+                                    <input
+                                        className="text-input"
+                                        type="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        placeholder="alex@university.edu"
+                                        required
+                                    />
                                 </div>
 
                                 <div className="input-row">
-                                    {/* Phone */}
+                                    {/* Phone (Lưu ý: Nếu Backend chưa có trường Phone, dữ liệu này chỉ hiển thị trên UI) */}
                                     <div className="input-group">
                                         <label className="input-label">Phone</label>
-                                        <input className="text-input" type="tel" placeholder="+1 (555) 000-0000" />
+                                        <input
+                                            className="text-input"
+                                            type="tel"
+                                            name="phone"
+                                            value={formData.phone}
+                                            onChange={handleChange}
+                                            placeholder="+1 (555) 000-0000"
+                                        />
                                     </div>
-                                    
+
                                     {/* University */}
                                     <div className="input-group">
                                         <label className="input-label">University</label>
                                         <div className="select-wrapper">
-                                            <select className="text-input select-input" required defaultValue="">
+                                            <select
+                                                className="text-input select-input"
+                                                name="university"
+                                                value={formData.university}
+                                                onChange={handleChange}
+                                                required
+                                            >
                                                 <option value="" disabled>Select University</option>
                                                 <option value="oxford">Oxford University</option>
                                                 <option value="stanford">Stanford University</option>
@@ -128,13 +228,29 @@ export default function Register() {
                                 {/* Password */}
                                 <div className="input-group">
                                     <label className="input-label">Password</label>
-                                    <input className="text-input" type="password" placeholder="••••••••" required />
+                                    <input
+                                        className="text-input"
+                                        type="password"
+                                        name="password"
+                                        value={formData.password}
+                                        onChange={handleChange}
+                                        placeholder="••••••••"
+                                        required
+                                    />
                                 </div>
 
                                 {/* Confirm Password */}
                                 <div className="input-group">
                                     <label className="input-label">Confirm Password</label>
-                                    <input className="text-input" type="password" placeholder="••••••••" required />
+                                    <input
+                                        className="text-input"
+                                        type="password"
+                                        name="confirmPassword"
+                                        value={formData.confirmPassword}
+                                        onChange={handleChange}
+                                        placeholder="••••••••"
+                                        required
+                                    />
                                 </div>
                             </div>
 
@@ -147,8 +263,13 @@ export default function Register() {
                             </div>
 
                             {/* Submit Button */}
-                            <button type="submit" className="btn-submit">
-                                Create Account
+                            <button
+                                type="submit"
+                                className="btn-submit"
+                                disabled={isLoading}
+                                style={{ opacity: isLoading ? 0.7 : 1, cursor: isLoading ? 'not-allowed' : 'pointer' }}
+                            >
+                                {isLoading ? 'Creating Account...' : 'Create Account'}
                             </button>
 
                             <p className="login-prompt">
@@ -161,16 +282,7 @@ export default function Register() {
 
             {/* Footer */}
             <footer className="footer-container">
-                <div className="footer-brand-info">
-                    <span className="footer-title">The Curated Sanctuary</span>
-                    <p className="footer-copyright">© 2024 The Curated Sanctuary. Editorial Student Living.</p>
-                </div>
-                <div className="footer-links">
-                    <a href="#!">Privacy Policy</a>
-                    <a href="#!">Terms of Service</a>
-                    <a href="#!">Help Center</a>
-                    <a href="#!">Contact Support</a>
-                </div>
+                {/* ... (Giữ nguyên) ... */}
             </footer>
         </div>
     );

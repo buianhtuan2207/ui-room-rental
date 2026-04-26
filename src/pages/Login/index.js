@@ -1,29 +1,66 @@
-// mport React from 'react';
-// 1. Import thêm Link từ react-router-dom
-import { useNavigate, Link } from 'react-router-dom'; 
-import './Login.css'; 
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { loginApi } from '../../services/authService';
+import { useAuth } from '../../context/authContext';
+import './Login.css';
 
 export default function Login() {
     const navigate = useNavigate();
+    const { login } = useAuth();
 
-    const handleLogin = (e) => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleLogin = async (e) => {
         e.preventDefault();
-        // Tạm thời click Đăng nhập sẽ chuyển về Trang chủ
-        navigate("/");
+        setError('');
+        setIsLoading(true);
+
+        try {
+            const data = await loginApi(username, password);
+            console.log('Đăng nhập thành công:', data);
+
+            // Dùng hàm login của Context thay vì tự set localStorage
+            const token = data.token || data.accessToken;
+
+            // Tạm thời truyền username vào làm dữ liệu user để Header hiển thị
+            login({ username: username }, token);
+
+            // Chuyển hướng về trang chủ
+            navigate("/");
+        } catch (err) {
+            // ==========================================
+            // XỬ LÝ LỖI: TÀI KHOẢN CHƯA XÁC THỰC
+            // ==========================================
+            const errorMessage = err.message || '';
+
+            // Bạn có thể đổi chữ "xác thực" thành câu lỗi chính xác mà Backend của bạn trả về
+            if (errorMessage.toLowerCase().includes('xác thực') || errorMessage.toLowerCase().includes('verified')) {
+                // Tự động chuyển hướng sang trang OTP và mang theo username/email
+                navigate('/verify-otp', { state: { email: username } });
+            } else {
+                // Các lỗi khác như sai pass, sai tài khoản
+                setError(errorMessage || 'Sai tài khoản hoặc mật khẩu!');
+            }
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
         <main className="login-container">
             {/* Left Side: Editorial Lifestyle Imagery */}
             <section className="login-sidebar">
-                <img 
-                    alt="Student lifestyle" 
-                    className="sidebar-bg-image" 
-                    data-alt="Interior of a modern, sunlit student studio apartment" 
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl81tafVGBuCzi_5AFA66svAObZqlNcghAsTmSWqqyYOUSsFY9BU7oGSZTv4VxTZ2J_3rG80iXlAJhrAL9t2WqwiQ0hZcRaVKnhbGsCchEgsJ5B7_t-WAqbzlbPXocsCloPY0Sw95VsFeg7rqYdCep5EhxH9Dv9lGm0MMMfVZALlHi-KP_WS1via79gkv8rY-wZ83dJhovJsspTDdo9ZOmhcdhNRFAxM2YPB8goWlH7AfRlUENLhY5RBF2WF-C-Y_XQ_2j6DZMCfRm" 
+                <img
+                    alt="Student lifestyle"
+                    className="sidebar-bg-image"
+                    data-alt="Interior of a modern, sunlit student studio apartment"
+                    src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1000&auto=format&fit=crop"
                 />
                 <div className="sidebar-gradient-overlay"></div>
-                
+
                 {/* Branding Content */}
                 <div className="sidebar-content">
                     <div className="brand-header">
@@ -98,43 +135,75 @@ export default function Login() {
                         <div className="divider-line-wrapper">
                             <div className="divider-line"></div>
                         </div>
-                        <span className="divider-text">Hoặc bằng Email</span>
+                        <span className="divider-text">Hoặc bằng tài khoản</span>
                     </div>
+
+                    {/* Khu vực hiển thị thông báo lỗi */}
+                    {error && (
+                        <div style={{ color: '#dc3545', backgroundColor: '#f8d7da', padding: '10px', borderRadius: '4px', marginBottom: '15px', fontSize: '14px', textAlign: 'center' }}>
+                            {error}
+                        </div>
+                    )}
 
                     {/* Credentials Form */}
                     <form className="login-form" onSubmit={handleLogin}>
                         <div className="form-group">
-                            <label className="input-label">Email của bạn</label>
-                            <input className="input-field" placeholder="example@domain.com" type="email" required />
+                            <label className="input-label">Tên đăng nhập / Email</label>
+                            <input
+                                className="input-field"
+                                placeholder="Nhập tên đăng nhập..."
+                                type="text"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                required
+                            />
                         </div>
                         <div className="form-group">
                             <div className="input-header">
                                 <label className="input-label">Mật khẩu</label>
-                                {/* 2. Thay đổi ở đây: Chuyển hướng đến Quên mật khẩu */}
                                 <Link className="forgot-link" to="/forgot-password">Quên mật khẩu?</Link>
                             </div>
-                            <input className="input-field" placeholder="••••••••" type="password" required />
+                            <input
+                                className="input-field"
+                                placeholder="••••••••"
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
                         </div>
                         <div className="checkbox-group">
                             <input className="checkbox-input" id="remember" type="checkbox" />
                             <label className="checkbox-label" htmlFor="remember">Ghi nhớ đăng nhập</label>
                         </div>
-                        <button className="btn-submit" type="submit">
-                            Đăng nhập ngay
+
+                        {/* Nút đăng nhập */}
+                        <button
+                            className="btn-submit"
+                            type="submit"
+                            disabled={isLoading}
+                            style={{ opacity: isLoading ? 0.7 : 1, cursor: isLoading ? 'not-allowed' : 'pointer' }}
+                        >
+                            {isLoading ? 'Đang xử lý...' : 'Đăng nhập'}
                         </button>
                     </form>
 
-                    {/* Footer Link */}
-                    <div className="form-footer">
+                    {/* ========================================== */}
+                    {/* THÊM LỐI ĐI THỦ CÔNG CHO NGƯỜI CHƯA XÁC THỰC */}
+                    {/* ========================================== */}
+                    <div className="form-footer" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                         <p className="footer-text">
-                            Chưa có tài khoản? 
-                            {/* 3. Thay đổi ở đây: Chuyển hướng đến Đăng ký */}
-                            <Link className="register-link" to="/register">Đăng ký ngay</Link>
+                            Chưa xác thực tài khoản?
+                            <Link className="register-link" to="/verify" style={{ marginLeft: '5px' }}>Xác thực ngay</Link>
+                        </p>
+                        <p className="footer-text">
+                            Chưa có tài khoản?
+                            <Link className="register-link" to="/register" style={{ marginLeft: '5px' }}>Đăng ký</Link>
                         </p>
                     </div>
 
                     {/* Trust Badge */}
-                    <div className="trust-badges">
+                    <div className="trust-badges" style={{ marginTop: '20px' }}>
                         <div className="badge-item">
                             <span className="material-symbols-outlined badge-icon">verified_user</span>
                             <span className="badge-text">Secure Login</span>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
 import Home from '../pages/Home';
-import Room from "../pages/Room";
+import PostList from "../pages/PostList";
 import Detail from "../pages/Detail";
 import  Login from "../pages/Login"
 import Verify from '../pages/Verify';
@@ -28,7 +28,7 @@ function AppRoutes() {
             {/* 2. Nhóm Route dùng MainLayout (Cần Header/Footer/Sidebar) */}
             <Route element={<MainLayout />}>
                 <Route path="/" element={<Home />} />
-                <Route path="/room" element={<Room />} />
+                <Route path="/postlist" element={<PostList />} />
                 <Route path="/detail/:id" element={<Detail />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/favorites" element={<Favorites />} />
